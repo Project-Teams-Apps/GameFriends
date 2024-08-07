@@ -15,4 +15,10 @@
     <string name="password_hints">********</string>
     <string name="or">OR</string>
     <string name="name_hints">John Doe</string>
+    <string name="enter_otp_code">Enter Otp Code</string>
+    <string name="enter_5_otp_codes_that_have_been_received">Enter 5 OTP codes that have been received</string>
+    <string name="you_didn_t_receive_the_code">You didn\'t receive the code?</string>
+    <string name="resend_code">Resend Code</string>
+    <string name="send_code">Send Code</string>
+    <string name="check_your_email">Check Your Email</string>
 </resources>
