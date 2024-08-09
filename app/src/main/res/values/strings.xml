@@ -21,4 +21,9 @@
     <string name="resend_code">Resend Code</string>
     <string name="send_code">Send Code</string>
     <string name="check_your_email">Check Your Email</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="find_your_gaming_squad_and_take_your_friendships_to_the_next_level">find your gaming squad and take your friendships to the next level</string>
+    <string name="uprade_your_gameplay_with_your_new_friends">UPRADE YOUR GAMEPLAY WITH YOUR NEW FRIENDS</string>
+    <string name="authorize_with_google">Authorize with Google</string>
 </resources>
