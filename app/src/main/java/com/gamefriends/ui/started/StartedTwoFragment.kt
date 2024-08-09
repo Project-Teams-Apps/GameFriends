@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.gamefriends.R
 
-class StartedOneFragment : Fragment() {
+
+class StartedTwoFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,8 @@ class StartedOneFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_started_one, container, false)
+        return inflater.inflate(R.layout.fragment_started_two, container, false)
     }
+
 
 }

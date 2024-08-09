@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".ui.started.StartedTwoFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.started.StartedOneFragment"
     android:background="@color/primaryColor">
 
     <ImageView
@@ -23,7 +23,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-
     <TextView
         android:id="@+id/startedOneTv"
         android:layout_width="200dp"
@@ -39,29 +38,31 @@
         app:layout_constraintTop_toBottomOf="@id/logoAppsIv"
         android:layout_marginTop="30dp" />
 
-
-    <ImageView
-    android:id="@+id/dots_groupIv"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/dots_group"
-    app:layout_constraintStart_toStartOf="@id/startedOneTv"
-    app:layout_constraintEnd_toEndOf="@id/startedOneTv"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:layout_marginBottom="50dp"/>
-
+    <TextView
+        android:id="@+id/startedTwoTv"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/find_your_gaming_squad_and_take_your_friendships_to_the_next_level"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/startedOneTv"
+        app:layout_constraintEnd_toEndOf="@id/startedOneTv"
+        app:layout_constraintTop_toBottomOf="@id/startedOneTv"
+        android:layout_marginTop="10dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/nextBtn"
-        android:layout_width="100dp"
+        android:id="@+id/getStartedBtn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/secondaryColor"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/next"
+        android:text="@string/get_started"
         app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dots_groupIv"
-        app:layout_constraintStart_toEndOf="@id/dots_groupIv"
-        app:layout_constraintTop_toTopOf="@+id/dots_groupIv"
-        android:layout_marginStart="60dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/logoAppsIv"
+        app:layout_constraintEnd_toEndOf="@id/logoAppsIv"
+        android:layout_marginBottom="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
