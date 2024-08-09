@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.bio.gameplayed.HobbyFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primaryColor">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_gradient"/>
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/baseline_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        />
+
+    <TextView
+        android:id="@+id/hobbyTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hobby"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/backButton"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/describetv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/describe_yourself"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hobbyTv"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        />
+
+    <ImageView
+        android:id="@+id/progressDot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dots_one_asset"
+        app:layout_constraintStart_toStartOf="@id/describetv"
+        app:layout_constraintEnd_toEndOf="@id/describetv"
+        app:layout_constraintTop_toBottomOf="@id/describetv"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/wtgYouTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/what_s_your_hobby"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/progressDot"
+        app:layout_constraintTop_toBottomOf="@id/progressDot"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wtgYouTv">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/footballBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textColor="@color/white"
+            android:text="@string/football"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            android:textAlignment="textStart"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/karaokeBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:drawableLeft="@drawable/mic_icon"
+            android:drawablePadding="5dp"
+            android:backgroundTint="@color/blackLow"
+            android:text="@string/karaoke"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            app:strokeColor="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cookBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/cook_icon"
+            android:text="@string/cook"
+            android:textSize="14sp"
+            android:backgroundTint="@color/blackLow"
+            android:textAlignment="textStart"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/artBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/art_icon"
+            android:text="@string/art"
+            android:textAlignment="textStart"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/photoGraphyBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:text="@string/photography"
+            android:drawableLeft="@drawable/photography_icon"
+            android:drawablePadding="5dp"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:textAlignment="textStart"
+            android:backgroundTint="@color/blackLow"
+            android:layout_margin="2dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wtgYouTv">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/swimmingBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/swim_icon"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textColor="@color/white"
+            android:text="@string/swimming"
+            android:textSize="14sp"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            android:textAlignment="textStart"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/runningBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/running_icon"
+            android:textSize="14sp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textColor="@color/white"
+            android:textAlignment="textStart"
+            android:text="@string/running"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/musicBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/music_icon"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textColor="@color/white"
+            android:text="@string/music"
+            android:textSize="14sp"
+            android:backgroundTint="@color/blackLow"
+            android:textAlignment="textStart"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/travelingtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/travel_icon"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:text="@string/traveling"
+            android:textAlignment="textStart"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shoppingBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/shop_icon"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:text="@string/shopping"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:textAlignment="textStart"
+            android:backgroundTint="@color/blackLow"
+            android:layout_margin="2dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp"
+            />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryColor"
+        android:text="@string/next"
+        android:fontFamily="@font/poppins_medium"
+        app:cornerRadius="8dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/progressDot"
+        app:layout_constraintEnd_toEndOf="@id/progressDot"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
