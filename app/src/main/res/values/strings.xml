@@ -26,4 +26,19 @@
     <string name="find_your_gaming_squad_and_take_your_friendships_to_the_next_level">find your gaming squad and take your friendships to the next level</string>
     <string name="uprade_your_gameplay_with_your_new_friends">UPRADE YOUR GAMEPLAY WITH YOUR NEW FRIENDS</string>
     <string name="authorize_with_google">Authorize with Google</string>
+    <string name="game_played">Game Played</string>
+    <string name="describe_yourself">Describe Yourself</string>
+    <string name="what_s_game_you_play">What\'s Game you Play ?</string>
+    <string name="mobile_legend">Mobile Legend</string>
+    <string name="hok">HOK</string>
+    <string name="codm">CODM</string>
+    <string name="pubg_mobile">PUBG Mobile</string>
+    <string name="valorant">Valorant</string>
+    <string name="chess">Chess</string>
+    <string name="csgo">CSGO</string>
+    <string name="fortnite">Fortnite</string>
+    <string name="apex_legends">Apex Legends</string>
+    <string name="dota_2">Dota 2</string>
+    <string name="league_of_legends">League Of Legends</string>
+    <string name="genshin_impact">Genshin Impact</string>
 </resources>

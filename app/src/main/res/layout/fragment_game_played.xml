@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.bio.gameplayed.GamePlayedFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primaryColor">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_gradient"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-39dp" />
+
+    <TextView
+        android:id="@+id/gamePlayedtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_played"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/describetv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/describe_yourself"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gamePlayedtv"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        />
+
+    <ImageView
+        android:id="@+id/progressDot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dots_zero_asset"
+        app:layout_constraintStart_toStartOf="@id/describetv"
+        app:layout_constraintEnd_toEndOf="@id/describetv"
+        app:layout_constraintTop_toBottomOf="@id/describetv"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/wtgYouTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/what_s_game_you_play"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/progressDot"
+        app:layout_constraintTop_toBottomOf="@id/progressDot"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexBox"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:alignItems="center"
+        app:justifyContent="flex_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wtgYouTv"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mobileLegendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mobile_legend"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/hokBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hok"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/codmBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/codm"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pubgmBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pubg_mobile"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/valorantBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/valorant"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/chessBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chess"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/csgoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/csgo"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fortniteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fortnite"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/apexBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apex_legends"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dota2Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dota_2"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/lolBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/league_of_legends"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/genshinImpactBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/genshin_impact"
+            android:backgroundTint="@color/blackLow"
+            app:strokeColor="@color/white"
+            android:layout_margin="2dp"
+            />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryColor"
+        android:text="@string/next"
+        android:fontFamily="@font/poppins_medium"
+        app:cornerRadius="8dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/flexBox"
+        app:layout_constraintEnd_toEndOf="@id/flexBox"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
