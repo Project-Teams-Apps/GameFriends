@@ -1,4 +1,4 @@
-package com.gamefriends.ui.bio.gameplayed
+package com.gamefriends.ui.bio.hobby
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
