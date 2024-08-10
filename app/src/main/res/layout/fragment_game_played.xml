@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         app:flexWrap="wrap"
         app:alignItems="center"
-        app:justifyContent="flex_start"
+        app:justifyContent="space_evenly"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wtgYouTv"
