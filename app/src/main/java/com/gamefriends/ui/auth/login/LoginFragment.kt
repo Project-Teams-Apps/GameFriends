@@ -1,4 +1,4 @@
-package com.gamefriends.ui
+package com.gamefriends.ui.auth.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
