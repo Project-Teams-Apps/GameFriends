@@ -11,9 +11,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/background_gradient"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-39dp" />
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backgrounds"/>
 
     <TextView
         android:id="@+id/gamePlayedtv"

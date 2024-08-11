@@ -8,11 +8,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/background_gradient"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backgrounds"/>
 
 
     <ImageButton
@@ -102,14 +102,20 @@
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusBottomStart="8dp">
+            app:boxCornerRadiusBottomStart="8dp"
+            app:cursorColor="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:placeholderTextColor="@color/black"
+            app:counterTextColor="@color/black"
+            app:prefixTextColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxStrokeErrorColor="@color/red">
 
             <EditText
                 android:id="@+id/emailRegisterEdt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0"
                 android:drawableStart="@drawable/baseline_email_24"
                 android:drawablePadding="10dp"
                 android:hint="@string/games_gmail_com"
@@ -141,14 +147,20 @@
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusBottomStart="8dp">
+            app:boxCornerRadiusBottomStart="8dp"
+            app:cursorColor="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:placeholderTextColor="@color/black"
+            app:counterTextColor="@color/black"
+            app:prefixTextColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxStrokeErrorColor="@color/red">
 
             <EditText
                 android:id="@+id/nameRegisterEdt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0"
                 android:drawableStart="@drawable/baseline_person_24"
                 android:drawablePadding="10dp"
                 android:hint="@string/name_hints"
@@ -181,18 +193,27 @@
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
             app:boxCornerRadiusBottomStart="8dp"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:cursorColor="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:placeholderTextColor="@color/black"
+            app:counterTextColor="@color/black"
+            app:prefixTextColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxStrokeErrorColor="@color/red"
+            app:hintAnimationEnabled="false"
+            android:hint="">
 
             <EditText
                 android:id="@+id/passwordRegisterEdt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0"
-                android:drawablePadding="10dp"
+                android:layout_marginTop="10dp"
                 android:drawableStart="@drawable/baseline_lock_24"
-                android:hint="@string/password_hints"
+                android:drawablePadding="10dp"
                 android:inputType="textPassword"
+                android:hint="@string/password_hints"
                 android:maxLines="1"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
