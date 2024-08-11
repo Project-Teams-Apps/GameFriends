@@ -10,8 +10,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/background_gradient"
-        />
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backgrounds"/>
 
     <ImageView
         android:id="@+id/logoAppsIv"
@@ -21,14 +22,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@id/guideline"/>
 
 
     <TextView
         android:id="@+id/startedOneTv"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="CONNECT WITH GAMERS, CHAT, PLAY, REPEAT"
+        android:text="@string/connect_with_gamers_chat_play_repeat"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_medium"
         android:textAlignment="center"
@@ -64,4 +65,10 @@
         app:layout_constraintTop_toTopOf="@+id/dots_groupIv"
         android:layout_marginStart="60dp"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
 </androidx.constraintlayout.widget.ConstraintLayout>
