@@ -1,4 +1,4 @@
-package com.gamefriends.ui.started
+package com.gamefriends.ui.auth.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,24 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.gamefriends.R
-import com.gamefriends.databinding.FragmentStartedThreeBinding
+import com.gamefriends.databinding.FragmentLoginBinding
 
 
-class StartedThreeFragment : Fragment() {
+class LoginFragment : Fragment() {
 
-    private var _binding : FragmentStartedThreeBinding? = null
+    private var _binding : FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.signInBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_startedThreeFragment_to_loginFragment)
+        binding.backButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_loginFragment_to_startedThreeFragment)
         }
 
         binding.signUpBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_startedThreeFragment_to_registerFragment)
+            it.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
+
     }
 
     override fun onCreateView(
@@ -32,7 +35,7 @@ class StartedThreeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentStartedThreeBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
