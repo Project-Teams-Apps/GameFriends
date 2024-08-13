@@ -3,16 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bio.gender.GenderFragment"
+    tools:context=".ui.bio.image.ChooseImageFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryColor">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/backgrounds"/>
+        android:src="@drawable/background_gradient"/>
 
     <ImageButton
         android:id="@+id/backButton"
@@ -29,7 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="Gender"
+        android:text="@string/input_picture"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -57,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:src="@drawable/dots_half_assets"
+        android:src="@drawable/dots_five_asset"
         app:layout_constraintEnd_toEndOf="@id/describetv"
         app:layout_constraintStart_toStartOf="@id/describetv"
         app:layout_constraintTop_toBottomOf="@id/describetv" />
@@ -68,26 +66,53 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/what_s_your_gender"
+        android:text="@string/enter_3_your_picture"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/progressDot"
         app:layout_constraintTop_toBottomOf="@id/progressDot" />
 
-    <Spinner
-        android:id="@+id/dropdownGenderMenu"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/spinner_background"
-        app:layout_constraintStart_toStartOf="@id/progressDot"
-        app:layout_constraintEnd_toEndOf="@id/progressDot"
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/wtgYouTv"
-        android:popupBackground="@color/white"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp">
+
+        <View
+            android:layout_width="360dp"
+            android:layout_height="300dp"
+            android:background="@drawable/rounded_button" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/previewImagesView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_image_24" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/pickImageButton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_button"
+        android:src="@drawable/baseline_image_search_24"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"/>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/continueBtn"
@@ -98,10 +123,15 @@
         android:fontFamily="@font/poppins_medium"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="@string/next"
+        android:text="@string/finish"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/progressDot"
         app:layout_constraintStart_toStartOf="@id/progressDot" />
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

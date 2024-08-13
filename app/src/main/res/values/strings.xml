@@ -57,4 +57,8 @@
     <string name="what_s_your_gender">What\'s Your Gender ?</string>
     <string name="level_up_your_friendship">LEVEL UP YOUR FRIENDSHIP</string>
     <string name="connect_with_gamers_chat_play_repeat">CONNECT WITH GAMERS, CHAT, PLAY, REPEAT</string>
+    <string name="your_location">Your Location ?</string>
+    <string name="input_picture">Input Picture</string>
+    <string name="enter_3_your_picture">Enter 3 Your Picture ?</string>
+    <string name="finish">Finish</string>
 </resources>

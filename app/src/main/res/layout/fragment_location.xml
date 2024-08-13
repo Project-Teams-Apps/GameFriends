@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bio.gender.GenderFragment"
+    tools:context=".ui.bio.location.LocationFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryColor">
 
@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="Gender"
+        android:text="Location"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:src="@drawable/dots_half_assets"
+        android:src="@drawable/dots_three_asset"
         app:layout_constraintEnd_toEndOf="@id/describetv"
         app:layout_constraintStart_toStartOf="@id/describetv"
         app:layout_constraintTop_toBottomOf="@id/describetv" />
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/what_s_your_gender"
+        android:text="@string/your_location"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/progressDot" />
 
     <Spinner
-        android:id="@+id/dropdownGenderMenu"
+        android:id="@+id/dropdownLocationMenu"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -103,5 +103,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/progressDot"
         app:layout_constraintStart_toStartOf="@id/progressDot" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
