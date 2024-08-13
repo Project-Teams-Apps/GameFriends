@@ -22,6 +22,10 @@ class RegisterFragment : Fragment() {
             it.findNavController().navigate(R.id.action_registerFragment_to_startedThreeFragment)
         }
 
+        binding.signUpBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_registerFragment_to_gamePlayedFragment)
+        }
+
     }
 
     override fun onCreateView(
