@@ -5,14 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.gamefriends.R
+import com.gamefriends.databinding.FragmentGenderBinding
 
 
 class GenderFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private var _binding: FragmentGenderBinding? = null
+    private val binding get() = _binding!!
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.continueBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_genderFragment_to_hobbyFragment)
+        }
     }
 
     override fun onCreateView(
@@ -20,7 +28,8 @@ class GenderFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gender, container, false)
+        _binding = FragmentGenderBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 }

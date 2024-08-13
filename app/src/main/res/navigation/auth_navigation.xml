@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_registerFragment_to_OtpFragment"
             app:destination="@id/OtpFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_gamePlayedFragment"
+            app:destination="@id/gamePlayedFragment" />
     </fragment>
 
     <fragment
@@ -75,4 +78,30 @@
             app:destination="@id/registerFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/gamePlayedFragment"
+        android:name="com.gamefriends.ui.bio.gameplayed.GamePlayedFragment"
+        android:label="gamePlayedFragment"
+        tools:layout="@layout/fragment_game_played">
+        <action
+            android:id="@+id/action_gamePlayedFragment_to_genderFragment"
+            app:destination="@id/genderFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/genderFragment"
+        android:name="com.gamefriends.ui.bio.gender.GenderFragment"
+        android:label="genderFragment"
+        tools:layout="@layout/fragment_gender">
+        <action
+            android:id="@+id/action_genderFragment_to_hobbyFragment"
+            app:destination="@id/hobbyFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/hobbyFragment"
+        android:name="com.gamefriends.ui.bio.hobby.HobbyFragment"
+        android:label="hobbyFragment"
+        tools:layout="@layout/fragment_hobby"/>
 </navigation>
