@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bio.gender.GenderFragment"
+    tools:context=".ui.bio.biouser.BioUserFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryColor">
 
@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="Gender"
+        android:text="Bio"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:src="@drawable/dots_half_assets"
+        android:src="@drawable/dots_four_asset"
         app:layout_constraintEnd_toEndOf="@id/describetv"
         app:layout_constraintStart_toStartOf="@id/describetv"
         app:layout_constraintTop_toBottomOf="@id/describetv" />
@@ -68,26 +68,60 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/what_s_your_gender"
+        android:text="Bio ?"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/progressDot"
         app:layout_constraintTop_toBottomOf="@id/progressDot" />
 
-    <Spinner
-        android:id="@+id/dropdownGenderMenu"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/spinner_background"
-        app:layout_constraintStart_toStartOf="@id/progressDot"
-        app:layout_constraintEnd_toEndOf="@id/progressDot"
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/wtgYouTv"
-        android:popupBackground="@color/white"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bio_form_asset"
+            android:layout_gravity="center_horizontal"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailEdtLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="70dp"
+            android:layout_marginTop="10dp"
+            app:cursorColor="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:placeholderTextColor="@color/black"
+            app:counterTextColor="@color/black"
+            app:prefixTextColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxStrokeErrorColor="@color/red">
+
+            <EditText
+                android:id="@+id/emailLoginEdt"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawablePadding="10dp"
+                android:autofillHints="emailAddress"
+                android:inputType="textEmailAddress"
+                android:background="@null"
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                tools:alpha="100" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </FrameLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/continueBtn"
