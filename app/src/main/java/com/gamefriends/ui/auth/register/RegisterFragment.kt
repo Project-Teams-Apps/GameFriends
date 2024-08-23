@@ -23,7 +23,7 @@ class RegisterFragment : Fragment() {
         }
 
         binding.signUpBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_registerFragment_to_gamePlayedFragment)
+            it.findNavController().navigate(R.id.action_registerFragment_to_main_activity)
         }
 
     }
