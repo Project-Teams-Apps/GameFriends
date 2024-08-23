@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.AuthenticationActivity">
+    tools:context=".ui.auth.AuthenticationActivity"
+    android:background="@color/primaryColor">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"

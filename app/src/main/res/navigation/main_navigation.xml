@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation">
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -17,4 +18,15 @@
         android:name="com.gamefriends.ui.main.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
 
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:label="NotificationFragment"
+        android:name="com.gamefriends.ui.main.notifcation.NotificationFragment"
+        tools:layout="@layout/fragment_notification"/>
+
+    <fragment
+        android:id="@+id/listChatFragment"
+        android:label="ListChatFragment"
+        android:name="com.gamefriends.ui.main.chat.ListChatFragment"
+        tools:layout="@layout/fragment_list_chat"/>
 </navigation>

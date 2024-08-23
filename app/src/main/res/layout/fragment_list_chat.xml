@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.chat.ListChatFragment"
+    android:background="@color/primaryColor">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchEdtLayout"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        app:cursorColor="@color/white"
+        app:boxStrokeColor="@color/white"
+        app:placeholderTextColor="@color/white"
+        app:counterTextColor="@color/white"
+        app:prefixTextColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:boxStrokeErrorColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/listButtonNotification">
+
+        <EditText
+            android:id="@+id/searchFriendsEdt"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawablePadding="10dp"
+            android:hint="Search Friends"
+            android:textColorHint="@color/white"
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
+            android:background="@null"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/listButtonNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_format_list_bulleted_24"
+        android:background="@drawable/button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchEdtLayout"
+        app:layout_constraintBottom_toBottomOf="@id/searchEdtLayout"
+        android:layout_marginEnd="8dp"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
