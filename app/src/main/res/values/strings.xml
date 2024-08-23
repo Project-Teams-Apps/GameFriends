@@ -62,4 +62,10 @@
     <string name="enter_3_your_picture">Enter 3 Your Picture ?</string>
     <string name="finish">Finish</string>
     <string name="add_friend_button">Add Friend Button</string>
+    <string name="username">Username</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="female">Female</string>
+    <string name="_0_friends">0 Friends</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="bio">Bio</string>
 </resources>
