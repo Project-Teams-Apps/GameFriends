@@ -38,6 +38,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        dataBinding = true
     }
 }
 
@@ -55,9 +56,9 @@ dependencies {
 
     // Fragment
     implementation("de.hdodenhof:circleimageview:3.1.0")
-    implementation("androidx.fragment:fragment-ktx:1.8.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -83,5 +84,10 @@ dependencies {
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
     ksp("androidx.room:room-compiler:2.5.0")
+
+    // Flexbox
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    implementation("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
 
 }

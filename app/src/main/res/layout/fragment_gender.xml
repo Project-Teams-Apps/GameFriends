@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.bio.gender.GenderFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primaryColor">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backgrounds"/>
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/baseline_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hobbyTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Gender"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/backButton" />
+
+    <TextView
+        android:id="@+id/describetv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/describe_yourself"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hobbyTv" />
+
+    <ImageView
+        android:id="@+id/progressDot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/dots_half_assets"
+        app:layout_constraintEnd_toEndOf="@id/describetv"
+        app:layout_constraintStart_toStartOf="@id/describetv"
+        app:layout_constraintTop_toBottomOf="@id/describetv" />
+
+    <TextView
+        android:id="@+id/wtgYouTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/what_s_your_gender"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/progressDot"
+        app:layout_constraintTop_toBottomOf="@id/progressDot" />
+
+    <Spinner
+        android:id="@+id/dropdownGenderMenu"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/spinner_background"
+        app:layout_constraintStart_toStartOf="@id/progressDot"
+        app:layout_constraintEnd_toEndOf="@id/progressDot"
+        app:layout_constraintTop_toBottomOf="@id/wtgYouTv"
+        android:popupBackground="@color/white"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/next"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/progressDot"
+        app:layout_constraintStart_toStartOf="@id/progressDot" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

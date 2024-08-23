@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/usernameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Username"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"/>
+
+
+    <TextView
+        android:id="@+id/countryTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Indonesia"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/genderTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Female"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"/>
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="4dp"
+        android:visibility="visible"
+        android:background="@color/white"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listGamePlayedRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:listitem="@layout/textview_item"
+        tools:itemCount="1"/>
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="4dp"
+        android:visibility="visible"
+        android:background="@color/white"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listHobbyRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:listitem="@layout/textview_item"
+        tools:itemCount="1"/>
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="4dp"
+        android:visibility="visible"
+        android:background="@color/white"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
+        android:id="@+id/bioTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mobile_legend"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <ImageButton
+        android:id="@+id/hideVertBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_more_horiz_24"
+        android:background="@color/transparent"/>
+
+
+</LinearLayout>
