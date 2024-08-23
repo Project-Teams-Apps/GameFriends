@@ -17,4 +17,15 @@
         android:name="com.gamefriends.ui.main.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
 
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:label="NotificationFragment"
+        android:name="com.gamefriends.ui.main.notifcation.NotificationFragment"
+        tools:layout="@layout/fragment_notification"/>
+
+    <fragment
+        android:id="@+id/listChatFragment"
+        android:label="ListChatFragment"
+        android:name="com.gamefriends.ui.main.chat.ListChatFragment"
+        tools:layout="@layout/fragment_list_chat"/>
 </navigation>

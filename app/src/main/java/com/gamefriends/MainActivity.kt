@@ -44,11 +44,10 @@ class MainActivity : AppCompatActivity() {
 //    }
 
 
-//    companion object {
-//        val HOME_ITEM = R.id
-//        val ACHIEVEMENT_ITEM = R.id.achievementFragment
-//        val SENSOR_ITEM = R.id.sensorFragment
-//        val FRIENDS_ITEM = R.id.friendsFragment
-//        val PROFILE_ITEM = R.id.profileFragment
-//    }
+    companion object {
+        val HOME_ITEM = R.id.homeFragment
+        val LISTCHAT_ITEM = R.id.listChatFragment
+        val NOTIF_ITEM = R.id.notificationFragment
+        val PROFILE_ITEM = R.id.profileFragment
+    }
 }
