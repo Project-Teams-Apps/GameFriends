@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_registerFragment_to_gamePlayedFragment"
             app:destination="@id/gamePlayedFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_main_activity"
+            app:destination="@id/main_activity" />
     </fragment>
 
     <fragment
@@ -104,4 +107,11 @@
         android:name="com.gamefriends.ui.bio.hobby.HobbyFragment"
         android:label="hobbyFragment"
         tools:layout="@layout/fragment_hobby"/>
+
+    <activity
+        android:id="@+id/main_activity"
+        android:name="com.gamefriends.MainActivity"
+        android:label="MainActivity"
+        tools:layout="@layout/activity_main"/>
+
 </navigation>
