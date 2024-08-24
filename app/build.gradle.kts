@@ -90,4 +90,24 @@ dependencies {
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
     implementation("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
 
+
+    //Dagger
+    implementation("com.google.dagger:hilt-android:2.44")
+    ksp("com.google.dagger:hilt-android-compiler:2.44")
+    ksp("com.google.dagger:hilt-compiler:2.44")
+
+
+    //flow
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+    implementation("net.zetetic:android-database-sqlcipher:4.4.0")
+    implementation("androidx.sqlite:sqlite-ktx:2.1.0")
+
+    // Skeleton Loading
+    implementation("com.github.EudyContreras.Skeleton-Bones:v1.3")
+
+    // Leak Canary
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
+
 }
