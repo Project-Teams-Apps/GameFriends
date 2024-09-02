@@ -171,6 +171,17 @@
 
     </FrameLayout>
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loadingProgressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/signInBtn"
+        app:layout_constraintEnd_toEndOf="@id/signInBtn"
+        app:layout_constraintBottom_toBottomOf="@id/signInBtn"
+        app:layout_constraintTop_toTopOf="@id/signInBtn"
+        app:indicatorColor="@color/white"
+        android:visibility="invisible"
+        app:trackColor="@color/white"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signInBtn"
