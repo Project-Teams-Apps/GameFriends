@@ -90,4 +90,13 @@ dependencies {
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
     implementation("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
 
+    implementation ("androidx.datastore:datastore-preferences:1.1.1")
+
+    implementation("net.zetetic:android-database-sqlcipher:4.4.0")
+    implementation("androidx.sqlite:sqlite-ktx:2.1.0")
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    ksp("com.google.dagger:hilt-android-compiler:2.44")
+    ksp("com.google.dagger:hilt-compiler:2.44")
+
 }
