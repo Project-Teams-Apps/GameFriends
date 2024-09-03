@@ -10,6 +10,7 @@ import com.gamefriends.R
 import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class AuthenticationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
