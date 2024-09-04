@@ -7,6 +7,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val useCase: LoginUseCase): ViewModel() {
-    fun login(email: String, password: String) = useCase.loginUseCase(email, password).asLiveData()
+class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase): ViewModel() {
+    fun login(email: String, password: String) = loginUseCase.loginUseCase(email, password).asLiveData()
 }

@@ -1,5 +1,6 @@
 package com.gamefriends.core.di
 
+import com.gamefriends.BuildConfig
 import com.gamefriends.core.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -35,7 +36,7 @@ class NetworkModule {
     @Provides
     fun provideApiService(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

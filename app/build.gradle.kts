@@ -16,6 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String" , "BASE_URL" , "\"https://game-friends-one.vercel.app/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -96,7 +97,6 @@ dependencies {
     implementation("androidx.sqlite:sqlite-ktx:2.1.0")
 
     implementation("com.google.dagger:hilt-android:2.44")
-    ksp("com.google.dagger:hilt-android-compiler:2.44")
     ksp("com.google.dagger:hilt-compiler:2.44")
 
 }
