@@ -4,7 +4,9 @@ import com.gamefriends.core.data.source.preferences.TokenPreferences
 import com.gamefriends.core.data.source.remote.RemoteSource
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.response.ErrorResponse
+import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
+import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.Token
 import com.gamefriends.core.domain.repository.IUserRepository
 import com.gamefriends.core.utils.AppExecutors
@@ -64,6 +66,21 @@ class UserRepository @Inject constructor(
                 }
             }
 
+        }
+    }
+
+    override fun verifyOtpRegister(email: String, otp: String): Flow<Resource<VerifyRegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        remoteSource.verifyOtpRegister(email, otp).collect() {apiResponse ->
+            when(apiResponse){
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
         }
     }
 

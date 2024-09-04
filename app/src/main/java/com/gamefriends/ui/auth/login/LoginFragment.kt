@@ -22,6 +22,7 @@ class LoginFragment : Fragment() {
 
     private val loginViewModel: LoginViewModel by viewModels()
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -70,7 +71,7 @@ class LoginFragment : Fragment() {
                             Log.d("LoginFragment", "loginAuth: ${token.token}")
 
                             // Navigate on success
-                            it.findNavController().navigate(R.id.action_loginFragment_to_startedThreeFragment)
+                            it.findNavController().navigate(R.id.action_loginFragment_to_main_activity)
                         } ?: run {
                             Toast.makeText(context, "Unexpected error: No token received", Toast.LENGTH_SHORT).show()
                         }

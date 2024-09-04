@@ -63,7 +63,7 @@ class RegisterFragment : Fragment() {
                         Log.d("LoginFragment", "Logging in...")
                     }
                     is Resource.Success -> {
-                        it.findNavController().navigate(R.id.action_registerFragment_to_gamePlayedFragment)
+                        it.findNavController().navigate(R.id.action_registerFragment_to_OtpFragment)
                     }
                 }
 

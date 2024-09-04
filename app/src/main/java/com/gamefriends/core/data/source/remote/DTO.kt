@@ -12,4 +12,9 @@ object DTO {
         var name: String,
         var password: String
     )
+
+    data class VerifyOtpRegisterBody(
+        var email: String,
+        var otp: String
+    )
 }

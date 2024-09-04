@@ -2,9 +2,12 @@ package com.gamefriends.core.domain.usecase
 
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
+import com.gamefriends.core.domain.model.Token
 import kotlinx.coroutines.flow.Flow
 
-interface RegisterUseCase {
+interface UserUseCase {
+
+    fun loginUseCase(email: String, password: String): Flow<Resource<Token>>
 
     fun registerUseCase(email: String, name: String, password: String): Flow<Resource<RegisterResponse>>
 }

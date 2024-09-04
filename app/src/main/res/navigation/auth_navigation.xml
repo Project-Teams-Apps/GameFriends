@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_loginFragment_to_startedThreeFragment"
             app:destination="@id/startedThreeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_main_activity"
+            app:destination="@id/main_activity" />
     </fragment>
 
     <fragment
