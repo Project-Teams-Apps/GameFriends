@@ -1,7 +1,9 @@
 package com.gamefriends.core.domain.usecase
 
 import com.gamefriends.core.data.source.Resource
+import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
+import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.Token
 import com.gamefriends.core.domain.repository.IUserRepository
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +20,10 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         password: String,
     ): Flow<Resource<RegisterResponse>> {
         return userRepository.register(email, name, password)
+    }
+
+    override fun verifyOtpUseCase(email: String, otp: String): Flow<Resource<VerifyRegisterResponse>> {
+        return userRepository.verifyOtpRegister(email, otp)
     }
 
 }
