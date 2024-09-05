@@ -2,7 +2,11 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id("kotlin-kapt")
+    id ("androidx.navigation.safeargs")
+
 }
 
 android {
@@ -16,6 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String" , "BASE_URL" , "\"https://game-friends-one.vercel.app/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -29,11 +34,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kapt {
+        correctErrorTypes =  true
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -83,11 +91,19 @@ dependencies {
 
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.5.0")
+    ksp("androidx.room:room-compiler:2.6.1")
 
     // Flexbox
     implementation ("com.google.android.flexbox:flexbox:3.0.0")
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
     implementation("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
+
+    implementation ("androidx.datastore:datastore-preferences:1.1.1")
+
+    implementation("net.zetetic:android-database-sqlcipher:4.4.0")
+    implementation("androidx.sqlite:sqlite-ktx:2.1.0")
+
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-compiler:2.48")
 
 }
