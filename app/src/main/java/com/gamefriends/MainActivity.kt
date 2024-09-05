@@ -10,13 +10,14 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.gamefriends.databinding.ActivityMainBinding
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
