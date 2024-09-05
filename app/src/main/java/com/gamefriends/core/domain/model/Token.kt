@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Token(
+    var userId: String,
     var token: String,
     var isLogin: Boolean = false
 ): Parcelable

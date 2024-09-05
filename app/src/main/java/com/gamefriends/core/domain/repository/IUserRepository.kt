@@ -14,5 +14,5 @@ interface IUserRepository {
 
     fun register(email: String, name: String, password: String): Flow<Resource<RegisterResponse>>
 
-    fun verifyOtpRegister(email: String, otp: String): Flow<Resource<VerifyRegisterResponse>>
+    fun verifyOtpRegister(email: String, otp: String): Flow<Resource<Token>>
 }

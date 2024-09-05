@@ -31,7 +31,6 @@ class LoginFragment : Fragment() {
         }
 
         loginAuth()
-
     }
 
     override fun onCreateView(
@@ -59,16 +58,13 @@ class LoginFragment : Fragment() {
                 when (data) {
                     is Resource.Error -> {
                         Toast.makeText(context, "Error: ${data.message}", Toast.LENGTH_SHORT).show()
-                        Log.d("LoginFragment", "Login failed: ${data.message}")
                     }
                     is Resource.Loading -> {
                         Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
-                        Log.d("LoginFragment", "Logging in...")
                     }
                     is Resource.Success -> {
                         data.data?.let { token ->
                             Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
-                            Log.d("LoginFragment", "loginAuth: ${token.token}")
 
                             // Navigate on success
                             it.findNavController().navigate(R.id.action_loginFragment_to_main_activity)

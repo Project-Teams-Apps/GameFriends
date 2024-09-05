@@ -10,6 +10,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class UserInteractor @Inject constructor(private val userRepository: IUserRepository): UserUseCase {
+    override fun getToken(): Flow<Token> {
+        return userRepository.tokenProvider()
+    }
+
     override fun loginUseCase(email: String, password: String): Flow<Resource<Token>> {
         return userRepository.login(email, password)
     }
@@ -22,8 +26,9 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         return userRepository.register(email, name, password)
     }
 
-    override fun verifyOtpUseCase(email: String, otp: String): Flow<Resource<VerifyRegisterResponse>> {
+    override fun verifyOtpUseCase(email: String, otp: String): Flow<Resource<Token>> {
         return userRepository.verifyOtpRegister(email, otp)
     }
+
 
 }

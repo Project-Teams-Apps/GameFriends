@@ -19,7 +19,7 @@ interface ApiService {
         @Body registerBody: DTO.RegisterBody
     ): RegisterResponse
 
-    @POST("auth/verify/register")
+    @POST("auth/register/verify")
     suspend fun verifyOtpRegister(
         @Body verifyOtpRegisterBody: DTO.VerifyOtpRegisterBody
     ): VerifyRegisterResponse

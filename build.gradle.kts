@@ -1,6 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     val agp_version by extra("8.1.2")
+    dependencies {
+        classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
+    }
+
 }
 plugins {
     alias(libs.plugins.android.application) apply false

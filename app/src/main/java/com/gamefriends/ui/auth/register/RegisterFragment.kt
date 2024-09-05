@@ -35,7 +35,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
@@ -56,21 +56,17 @@ class RegisterFragment : Fragment() {
                 when (data) {
                     is Resource.Error -> {
                         Toast.makeText(context, "Error: ${data.message}", Toast.LENGTH_SHORT).show()
-                        Log.d("LoginFragment", "Login failed: ${data.message}")
                     }
                     is Resource.Loading -> {
                         Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
-                        Log.d("LoginFragment", "Logging in...")
                     }
                     is Resource.Success -> {
-                        it.findNavController().navigate(R.id.action_registerFragment_to_OtpFragment)
+                        val action = RegisterFragmentDirections.actionRegisterFragmentToOtpFragment(email)
+                        it.findNavController().navigate(action)
                     }
                 }
 
             }
         }
     }
-
-
-
 }

@@ -5,6 +5,7 @@ import com.gamefriends.core.data.source.remote.network.ApiService
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
+import com.gamefriends.core.domain.model.Token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -47,7 +48,7 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
             }
-        }
+        }.flowOn(Dispatchers.IO)
 
 
     suspend fun verifyOtpRegister(email: String, otp: String): Flow<ApiResponse<VerifyRegisterResponse>> =
@@ -64,5 +65,5 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
             }
-        }
+        }.flowOn(Dispatchers.IO)
 }

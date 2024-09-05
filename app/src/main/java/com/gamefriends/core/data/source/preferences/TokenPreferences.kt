@@ -20,6 +20,7 @@ class TokenPreferences @Inject constructor(private val dataStore: DataStore<Pref
     fun getToken(): Flow<Token> {
         return dataStore.data.map { preferences ->
             Token(
+                preferences[USERID] ?: "",
                 preferences[TOKEN] ?: "",
                 preferences[IS_LOGIN] ?: false
             )
@@ -28,6 +29,7 @@ class TokenPreferences @Inject constructor(private val dataStore: DataStore<Pref
 
     suspend fun saveToken(token: Token) {
         dataStore.edit { preferences ->
+            preferences[USERID] = token.userId
             preferences[TOKEN] = token.token
             preferences[IS_LOGIN] = true
         }
@@ -41,6 +43,7 @@ class TokenPreferences @Inject constructor(private val dataStore: DataStore<Pref
 
 
     companion object {
+        private val USERID = stringPreferencesKey("userId")
         private val TOKEN = stringPreferencesKey("token")
         private val IS_LOGIN = booleanPreferencesKey("isLogin")
     }

@@ -35,7 +35,8 @@ class UserRepository @Inject constructor(
             when (apiResponse) {
                 is ApiResponse.Success -> {
                     val tokenValue = apiResponse.data.token ?: ""
-                    val token = Token(token = tokenValue, isLogin = true)
+                    val userId = apiResponse.data.data?.userId ?: ""
+                    val token = Token(userId = userId , token = tokenValue, isLogin = true)
                     tokenPreferences.saveToken(token)
                     emit(Resource.Success(token))
                 }
@@ -65,11 +66,10 @@ class UserRepository @Inject constructor(
                     emit(Resource.Success(response))
                 }
             }
-
         }
     }
 
-    override fun verifyOtpRegister(email: String, otp: String): Flow<Resource<VerifyRegisterResponse>> = flow {
+    override fun verifyOtpRegister(email: String, otp: String): Flow<Resource<Token>> = flow {
         emit(Resource.Loading())
 
         remoteSource.verifyOtpRegister(email, otp).collect() {apiResponse ->
@@ -77,13 +77,13 @@ class UserRepository @Inject constructor(
                 ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
                 is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
                 is ApiResponse.Success -> {
-                    val response = apiResponse.data
-                    emit(Resource.Success(response))
+                    val tokenValue = apiResponse.data.token ?: ""
+                    val userId = apiResponse.data.data?.userId ?: ""
+                    val token = Token(userId = userId , token = tokenValue, isLogin = true)
+                    tokenPreferences.saveToken(token)
+                    emit(Resource.Success(token))
                 }
             }
         }
     }
-
-
-
 }
