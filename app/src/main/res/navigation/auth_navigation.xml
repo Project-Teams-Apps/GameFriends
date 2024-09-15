@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_navigation"
     android:label="host"
-    app:startDestination="@id/startedOneFragment">
+    app:startDestination="@id/genderFragment">
 
     <fragment
         android:id="@+id/startedOneFragment"
@@ -116,7 +116,17 @@
         android:id="@+id/hobbyFragment"
         android:name="com.gamefriends.ui.bio.hobby.HobbyFragment"
         android:label="hobbyFragment"
-        tools:layout="@layout/fragment_hobby"/>
+        tools:layout="@layout/fragment_hobby">
+        <action
+            android:id="@+id/action_hobbyFragment_to_bioFragment"
+            app:destination="@id/bioFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bioFragment"
+        android:name="com.gamefriends.ui.bio.biouser.BioUserFragment"
+        android:label="@string/bio"
+        tools:layout="@layout/fragment_bio_user"/>
 
     <activity
         android:id="@+id/main_activity"

@@ -2,6 +2,7 @@ package com.gamefriends.core.data.source.remote
 
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.network.ApiService
+import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
@@ -58,6 +59,56 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
                 val response = apiService.verifyOtpRegister(requestBody)
 
                 if (response.token?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+    suspend fun gamePlayedBio(userId: String, gamePlayedString: List<String>): Flow<ApiResponse<BioResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.GamePlayedBody(gamePlayedString)
+                val response = apiService.gamePlayedBio(userId, requestBody)
+
+                if (response.data?.gamePlayed?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+
+    suspend fun genderBio(userId: String, gender: String): Flow<ApiResponse<BioResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.GenderBody(gender)
+                val response = apiService.genderBio(userId, requestBody)
+
+                if (response.data?.bio?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+
+    suspend fun hobbyBio(userId: String, hobby: List<String>): Flow<ApiResponse<BioResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.HobbyBody(hobby)
+                val response = apiService.hobbyBio(userId, requestBody)
+
+                if (response.data?.bio?.isNotEmpty() == true) {
                     emit(ApiResponse.Success(response))
                 } else {
                     emit(ApiResponse.Empty)

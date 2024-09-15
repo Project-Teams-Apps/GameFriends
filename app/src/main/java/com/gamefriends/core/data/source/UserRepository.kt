@@ -3,6 +3,7 @@ package com.gamefriends.core.data.source
 import com.gamefriends.core.data.source.preferences.TokenPreferences
 import com.gamefriends.core.data.source.remote.RemoteSource
 import com.gamefriends.core.data.source.remote.network.ApiResponse
+import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.ErrorResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
@@ -86,4 +87,53 @@ class UserRepository @Inject constructor(
             }
         }
     }
+
+    override fun gamePlayedBio(gamePlayed: List<String>): Flow<Resource<BioResponse>> = flow {
+        emit(Resource.Loading())
+        val userId = runBlocking { tokenPreferences.getToken().first().userId }
+        remoteSource.gamePlayedBio(userId, gamePlayed).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun genderBio(genderBioString: String): Flow<Resource<BioResponse>> = flow {
+        emit(Resource.Loading())
+
+        val userId = runBlocking { tokenPreferences.getToken().first().userId }
+        remoteSource.genderBio(userId, genderBioString).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun hobbyBio(hobby: List<String>): Flow<Resource<BioResponse>> = flow {
+        emit(Resource.Loading())
+
+        val userId = runBlocking { tokenPreferences.getToken().first().userId }
+        remoteSource.hobbyBio(userId, hobby).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+
 }

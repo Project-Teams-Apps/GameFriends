@@ -1,6 +1,7 @@
 package com.gamefriends.core.domain.usecase
 
 import com.gamefriends.core.data.source.Resource
+import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
@@ -28,6 +29,18 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
 
     override fun verifyOtpUseCase(email: String, otp: String): Flow<Resource<Token>> {
         return userRepository.verifyOtpRegister(email, otp)
+    }
+
+    override fun gamePlayedBio(gamePlayed: List<String>): Flow<Resource<BioResponse>> {
+        return userRepository.gamePlayedBio(gamePlayed)
+    }
+
+    override fun genderBio(gendrBioString: String): Flow<Resource<BioResponse>> {
+        return userRepository.genderBio(gendrBioString)
+    }
+
+    override fun hobbyBio(hobby: List<String>): Flow<Resource<BioResponse>> {
+        return userRepository.hobbyBio(hobby)
     }
 
 
