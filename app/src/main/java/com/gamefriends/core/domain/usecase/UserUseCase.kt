@@ -21,4 +21,8 @@ interface UserUseCase {
     fun genderBio(gendrBioString: String): Flow<Resource<BioResponse>>
 
     fun hobbyBio(hobby: List<String>): Flow<Resource<BioResponse>>
+
+    fun bioUser(bio: String): Flow<Resource<BioResponse>>
+
+    fun locationUser(location: String): Flow<Resource<BioResponse>>
 }

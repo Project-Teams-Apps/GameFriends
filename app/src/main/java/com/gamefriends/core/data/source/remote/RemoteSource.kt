@@ -117,4 +117,36 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
                 emit(ApiResponse.Error(e.toString()))
             }
         }.flowOn(Dispatchers.IO)
+
+    suspend fun bioUser(userId: String, bio: String): Flow<ApiResponse<BioResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.BioBody(bio)
+                val response = apiService.bioBio(userId, requestBody)
+
+                if (response.data?.bio?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+    suspend fun locationUser(userId: String, location: String): Flow<ApiResponse<BioResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.LocationBody(location)
+                val response = apiService.locationBio(userId, requestBody)
+
+                if (response.data?.location?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
 }

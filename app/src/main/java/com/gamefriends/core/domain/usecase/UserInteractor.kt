@@ -43,5 +43,13 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         return userRepository.hobbyBio(hobby)
     }
 
+    override fun bioUser(bio: String): Flow<Resource<BioResponse>> {
+        return userRepository.bioUser(bio)
+    }
+
+    override fun locationUser(location: String): Flow<Resource<BioResponse>> {
+        return userRepository.locationUser(location)
+    }
+
 
 }

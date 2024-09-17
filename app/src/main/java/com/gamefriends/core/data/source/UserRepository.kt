@@ -135,5 +135,38 @@ class UserRepository @Inject constructor(
         }
     }
 
+    override fun bioUser(bio: String): Flow<Resource<BioResponse>>  = flow {
+        emit(Resource.Loading())
+
+        val userId = runBlocking { tokenPreferences.getToken().first().userId }
+        remoteSource.bioUser(userId, bio).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun locationUser(location: String): Flow<Resource<BioResponse>> = flow {
+        emit(Resource.Loading())
+
+        val userId = runBlocking { tokenPreferences.getToken().first().userId }
+        remoteSource.locationUser(userId, location).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+
+        }
+    }
+
 
 }
