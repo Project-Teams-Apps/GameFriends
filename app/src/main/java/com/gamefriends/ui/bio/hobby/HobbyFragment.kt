@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.gamefriends.R
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.databinding.FragmentHobbyBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HobbyFragment : Fragment() {
@@ -43,20 +45,15 @@ class HobbyFragment : Fragment() {
         return binding.root
 
 
-
     }
 
 
     private fun setupClickListener() {
         binding.continueBtn.setOnClickListener {
-            viewModel.hobbyBio(selectedHobby).observe(viewLifecycleOwner) {data ->
-                when(data) {
-                    is Resource.Error -> Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-                    is Resource.Loading -> Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
-                    is Resource.Success -> {
-                        it.findNavController().navigate(R.id.action_hobbyFragment_to_bioFragment)
-                    }
-                }
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.saveHobbyUser(selectedHobby)
+
+                it.findNavController().navigate(R.id.action_hobbyFragment_to_locationFragment)
             }
         }
     }

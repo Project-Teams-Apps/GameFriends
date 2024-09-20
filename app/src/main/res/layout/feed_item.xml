@@ -5,13 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/imageSlider"
+    <ImageView
+        android:id="@+id/imageFeedPreview"
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:iss_placeholder="@drawable/placeholder"
-        app:iss_auto_cycle="true"
-        app:iss_no_dots="false"
         android:background="@color/black"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -51,8 +49,8 @@
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/white"/>
 
-
         <TextView
+            android:id="@+id/locationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Indonesia"
@@ -60,21 +58,38 @@
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/white"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listGamePlayedRv"
+        <TextView
+            android:id="@+id/genderTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:listitem="@layout/textview_item"
-            tools:itemCount="1"/>
+            tools:text="Female"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"/>
 
-        <ImageButton
-            android:id="@+id/moreVertBtn"
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexboxGamePlayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_more_horiz_24"
-            android:background="@color/transparent"/>
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start">
+        </com.google.android.flexbox.FlexboxLayout>
 
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/hobbyGamePlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start">
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <TextView
+            android:id="@+id/bioTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Saya adalah mahasiswa Umsu"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"/>
 
     </LinearLayout>
 

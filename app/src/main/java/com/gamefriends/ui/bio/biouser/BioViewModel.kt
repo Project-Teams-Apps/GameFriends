@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BioViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel() {
-    fun bioUser(bio: String) = userUseCase.bioUser(bio).asLiveData()
+    suspend fun saveBioUser(bio: String) = userUseCase.saveBioUser(bio)
 }

@@ -69,6 +69,7 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="bio">Bio</string>
     <string name="notification">Notification</string>
+    <string name="retry">Retry</string>
 
 
     <string-array name="location_array">

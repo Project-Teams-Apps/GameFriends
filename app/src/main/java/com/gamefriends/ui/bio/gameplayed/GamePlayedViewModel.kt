@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GamePlayedViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel() {
-    fun gamePlayedBio(gamePlayed: List<String>) = userUseCase.gamePlayedBio(gamePlayed).asLiveData()
+    suspend fun saveGamePlayedUser(gamePlayed: List<String>) = userUseCase.saveGameplayedUser(gamePlayed)
 }

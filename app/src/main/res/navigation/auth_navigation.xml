@@ -154,7 +154,7 @@
 
     <activity
         android:id="@+id/main_activity"
-        android:name="com.gamefriends.MainActivity"
+        android:name="com.gamefriends.ui.main.MainActivity"
         android:label="MainActivity"
         tools:layout="@layout/activity_main"/>
 

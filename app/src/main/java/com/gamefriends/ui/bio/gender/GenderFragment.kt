@@ -10,11 +10,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.gamefriends.R
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.databinding.FragmentGenderBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GenderFragment : Fragment(){
@@ -32,12 +34,10 @@ class GenderFragment : Fragment(){
 
         binding.continueBtn.setOnClickListener {
             if (::selectedGender.isInitialized) {
-                genderViewModel.genderBio(selectedGender).observe(viewLifecycleOwner) { data ->
-                    when (data) {
-                        is Resource.Error -> Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
-                        is Resource.Loading -> Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                        is Resource.Success -> it.findNavController().navigate(R.id.action_genderFragment_to_hobbyFragment)
-                    }
+                viewLifecycleOwner.lifecycleScope.launch {
+                    genderViewModel.saveGenderUser(selectedGender)
+
+                    it.findNavController().navigate(R.id.action_genderFragment_to_hobbyFragment)
                 }
             } else {
                 Toast.makeText(requireContext(), "Please select a gender", Toast.LENGTH_SHORT).show()

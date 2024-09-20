@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.gamefriends.R
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.databinding.FragmentLocationBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class LocationFragment : Fragment() {
 
     private var _binding: FragmentLocationBinding? = null
@@ -29,15 +32,13 @@ class LocationFragment : Fragment() {
 
         binding.continueBtn.setOnClickListener {
             if (::selectedLocation.isInitialized) {
-                locationViewModel.locationUser(selectedLocation).observe(viewLifecycleOwner) { data ->
-                    when (data) {
-                        is Resource.Error -> Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
-                        is Resource.Loading -> Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                        is Resource.Success -> it.findNavController().navigate(R.id.action_locationFragment_to_bioFragment)
-                    }
+                viewLifecycleOwner.lifecycleScope.launch {
+                    locationViewModel.saveLocationUser(selectedLocation)
+
+                    it.findNavController().navigate(R.id.action_locationFragment_to_bioFragment)
                 }
             } else {
-                Toast.makeText(requireContext(), "Please select a gender", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please select a Location You Live Right now", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -63,7 +64,8 @@ class LocationFragment : Fragment() {
             "Vietnam",
             "Laos",
             "Myanmar",
-            "Cambodia"
+            "Cambodia",
+            "Timor Leste"
         )
 
         spinner.setItems(list)

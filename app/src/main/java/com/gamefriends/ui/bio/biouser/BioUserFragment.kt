@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.gamefriends.R
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.databinding.FragmentBioUserBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -48,14 +50,10 @@ class BioUserFragment : Fragment() {
                 Toast.makeText(requireContext(), "Bio Maximum is 100 words", Toast.LENGTH_SHORT).show()
             }
 
-            bioViewModel.bioUser(bio).observe(viewLifecycleOwner) { data ->
-                when(data) {
-                    is Resource.Error -> Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
-                    is Resource.Loading -> Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-                    is Resource.Success -> {
-                        it.findNavController().navigate(R.id.action_bioFragment_to_uploadImageFragment)
-                    }
-                }
+            viewLifecycleOwner.lifecycleScope.launch {
+                bioViewModel.saveBioUser(bio)
+
+                it.findNavController().navigate(R.id.action_bioFragment_to_uploadImageFragment)
             }
         }
     }

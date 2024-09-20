@@ -1,16 +1,30 @@
 package com.gamefriends.core.data.source.remote
 
+import androidx.lifecycle.LiveData
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.gamefriends.core.data.source.local.LocalDataSources
+import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.network.ApiService
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ListItem
+import com.gamefriends.core.data.source.remote.response.ListResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.Token
+import com.gamefriends.core.paging.ContentPagingSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -67,6 +81,20 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
                 emit(ApiResponse.Error(e.toString()))
             }
         }.flowOn(Dispatchers.IO)
+
+    @OptIn(ExperimentalPagingApi::class)
+    fun getListContentFeed(localDataSources: LocalDataSources, userId: String): Flow<PagingData<FeedUserEntity>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                enablePlaceholders = false
+            ),
+            remoteMediator = ContentPagingSource(localDataSources, apiService, userId),
+            pagingSourceFactory = {
+                localDataSources.getAllFeedUser()
+            }
+        ).flow
+    }
 
     suspend fun gamePlayedBio(userId: String, gamePlayedString: List<String>): Flow<ApiResponse<BioResponse>> =
         flow {
@@ -149,4 +177,39 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
                 emit(ApiResponse.Error(e.toString()))
             }
         }.flowOn(Dispatchers.IO)
+
+    suspend fun editBioUser(userId: String, bio: String, gender: String, gamePlayedString: List<String>, location: String, hobby: List<String>): Flow<ApiResponse<BioResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.EditBioUser(bio,gender,gamePlayedString,location,hobby)
+                val response = apiService.editBioUser(userId, requestBody)
+
+                if (response.data?.bio?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+    suspend fun uploadProfileImage(userId: String, file: File):Flow<ApiResponse<BioResponse>> = flow {
+        try {
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
+            val multiPartbody = MultipartBody.Part.createFormData(
+                "file",file.name, requestImageFile
+            )
+
+            val response = apiService.uploadImageProfile(userId, multiPartbody)
+
+            if (response.data?.profilePicureUrl?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
 }

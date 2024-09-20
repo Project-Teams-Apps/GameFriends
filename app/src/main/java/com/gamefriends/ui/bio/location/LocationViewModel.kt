@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LocationViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel() {
-    fun locationUser(location: String) = userUseCase.locationUser(location).asLiveData()
+    suspend fun saveLocationUser(location: String)= userUseCase.saveLocationUser(location)
 }

@@ -1,4 +1,4 @@
-package com.gamefriends.ui.bio.hobby
+package com.gamefriends.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -6,9 +6,7 @@ import com.gamefriends.core.domain.usecase.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-
 @HiltViewModel
-class HobbyViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel() {
-
-    suspend fun saveHobbyUser(hobby: List<String>) = userUseCase.saveHobbyUser(hobby)
+class MainViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel() {
+    val getToken = userUseCase.getToken().asLiveData()
 }

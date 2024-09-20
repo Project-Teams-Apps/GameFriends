@@ -8,5 +8,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GenderViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel() {
-    fun genderBio(genderBioString: String) = userUseCase.genderBio(genderBioString).asLiveData()
+
+    suspend fun saveGenderUser(gender: String) = userUseCase.saveGenderUser(gender)
 }

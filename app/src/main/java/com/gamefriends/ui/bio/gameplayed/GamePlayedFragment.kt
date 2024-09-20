@@ -8,12 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.gamefriends.R
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.databinding.FragmentGamePlayedBinding
 import com.gamefriends.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 
 
 @AndroidEntryPoint
@@ -34,7 +40,7 @@ class GamePlayedFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentGamePlayedBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,14 +48,11 @@ class GamePlayedFragment : Fragment() {
 
     private fun setupClickListener() {
         binding.continueBtn.setOnClickListener {
-            gamePlayedViewModel.gamePlayedBio(selectedGames).observe(viewLifecycleOwner) { data->
-                when(data) {
-                    is Resource.Error -> Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-                    is Resource.Loading -> Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
-                    is Resource.Success -> {
-                        it.findNavController().navigate(R.id.action_gamePlayedFragment_to_genderFragment)
-                    }
-                }
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                gamePlayedViewModel.saveGamePlayedUser(selectedGames)
+
+                it.findNavController().navigate(R.id.action_gamePlayedFragment_to_genderFragment)
             }
         }
     }

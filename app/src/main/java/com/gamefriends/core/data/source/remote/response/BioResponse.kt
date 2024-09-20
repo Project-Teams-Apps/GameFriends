@@ -17,7 +17,7 @@ data class DataBio(
 	val createdAt: String? = null,
 
 	@field:SerializedName("profilePicureUrl")
-	val profilePicureUrl: List<String?>? = null,
+	val profilePicureUrl: String? = null,
 
 	@field:SerializedName("gender")
 	val gender: String? = null,
