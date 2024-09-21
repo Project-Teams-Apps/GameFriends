@@ -69,4 +69,25 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="bio">Bio</string>
     <string name="notification">Notification</string>
+    <string name="retry">Retry</string>
+
+
+    <string-array name="location_array">
+        <item>Indonesia</item>
+        <item>Malaysia</item>
+        <item>Singapura</item>
+        <item>Thailand</item>
+        <item>Philippines</item>
+        <item>Brunei Darussalam</item>
+        <item>Vietnam</item>
+        <item>Laos</item>
+        <item>Myanmar</item>
+        <item>Cambodia</item>
+
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
 </resources>

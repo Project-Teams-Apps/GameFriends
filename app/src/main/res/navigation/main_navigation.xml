@@ -33,4 +33,10 @@
         android:label="ListChatFragment"
         android:name="com.gamefriends.ui.main.chat.ListChatFragment"
         tools:layout="@layout/fragment_list_chat"/>
+
+    <activity
+        android:id="@+id/authActivity"
+        android:label="authActivity"
+        android:name="com.gamefriends.ui.auth.AuthenticationActivity"
+        tools:layout="@layout/activity_authentication"/>
 </navigation>

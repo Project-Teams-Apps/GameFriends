@@ -1,13 +1,16 @@
-package com.gamefriends
+package com.gamefriends.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.gamefriends.R
 import com.gamefriends.databinding.ActivityMainBinding
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
+
+    private val viewModel : MainViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,16 +38,36 @@ class MainActivity : AppCompatActivity() {
 
         initNavHost()
         binding.setUpBottomNavigation()
+
+        viewModel.getToken.observe(this) {data->
+            if (data.token.isEmpty()) {
+                try {
+                    val mainNavController = findNavController(R.id.containerFragment)
+                    if (mainNavController.currentDestination?.id != R.id.startedOneFragment) {
+                        mainNavController.navigate(R.id.authActivity)
+                    }
+                } catch (e: Exception) {
+                    Log.e("AuthActivity", "Navigation error: ${e.message}")
+                }
+            } else {
+                Log.e("AuthActivity", "Token Empty: ${data.token}")
+            }
+        }
+
+
     }
 
     private fun initNavHost() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.containerFragment) as NavHostFragment
         navController = navHostFragment.navController
+
+
+
     }
 
     private fun ActivityMainBinding.setUpBottomNavigation() {
         val bottomNavigationItems = mutableListOf(
-            CurvedBottomNavigation.Model(HOME_ITEM, "Home",R.drawable.home_icon),
+            CurvedBottomNavigation.Model(HOME_ITEM, "Home", R.drawable.home_icon),
             CurvedBottomNavigation.Model(LISTCHAT_ITEM, "Chats", R.drawable.chats_icon),
             CurvedBottomNavigation.Model(NOTIF_ITEM, "Notif", R.drawable.notif_icon),
             CurvedBottomNavigation.Model(PROFILE_ITEM, "Profile", R.drawable.profile_icon)
