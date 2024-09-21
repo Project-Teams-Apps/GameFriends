@@ -3,6 +3,7 @@ package com.gamefriends.core.domain.repository
 import androidx.paging.PagingData
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
+import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.ListItem
 import com.gamefriends.core.data.source.remote.response.LoginResponse
@@ -29,6 +30,8 @@ interface IUserRepository {
     fun uploadProfileImage(file: File): Flow<Resource<BioResponse>>
 
     fun fetchListContent(): Flow<PagingData<FeedUserEntity>>
+
+    fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>>
 
     suspend fun saveGamePlayedUser(gamePlayed: List<String>)
 

@@ -15,9 +15,9 @@ import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.ListItem
 import com.gamefriends.core.domain.model.FeedUser
 import com.gamefriends.databinding.FeedItemBinding
+import com.qamar.curvedbottomnaviagtion.setMargins
 
 class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>(DIFF_CALLBACK) {
-    private var listData = ArrayList<FeedUserEntity>()
     var onItemCLick:((FeedUserEntity) -> Unit)? = null
 
     inner class ListViewHolder(private val binding: FeedItemBinding): RecyclerView.ViewHolder(binding.root) {
@@ -39,6 +39,7 @@ class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>
                     val chip = TextView(itemView.context).apply {
                         text = game
                         setPadding(16, 8, 16, 8)
+                        setMargins(3,0,3,0)
                         setBackgroundResource(R.drawable.chip_background)
                         setTextColor(ContextCompat.getColor(context, R.color.white))
                     }
@@ -56,12 +57,25 @@ class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>
 
                     hobbyGamePlayed.addView(chip)
                 }
+
+                if (data.isPendingRequest) {
+                    favAdd.isEnabled = false
+
+                } else {
+                    favAdd.isEnabled = true
+                }
             }
+
         }
 
         init {
             binding.favAdd.setOnClickListener {
-                onItemCLick?.invoke(listData[adapterPosition])
+                val item = getItem(adapterPosition)
+                if (item != null) {
+                    onItemCLick?.invoke(item)
+                    item.isPendingRequest = true
+                    notifyItemChanged(adapterPosition)
+                }
             }
         }
     }

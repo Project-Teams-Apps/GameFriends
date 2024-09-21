@@ -26,4 +26,7 @@ data class FeedUserEntity(
 
     @ColumnInfo("profilePictureUrl")
     val profilePictureUrl: String,
+
+    var isPendingRequest: Boolean = false
+
 ): Parcelable

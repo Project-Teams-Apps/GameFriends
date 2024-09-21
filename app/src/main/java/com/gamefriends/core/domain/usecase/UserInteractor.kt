@@ -3,6 +3,7 @@ package com.gamefriends.core.domain.usecase
 import androidx.paging.PagingData
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
+import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.ListItem
 import com.gamefriends.core.data.source.remote.response.LoginResponse
@@ -42,6 +43,10 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
 
     override fun fetchListContent(): Flow<PagingData<FeedUserEntity>> {
         return userRepository.fetchListContent()
+    }
+
+    override fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>> {
+        return userRepository.addFriendRequest(userAcceptId)
     }
 
     override fun uploadProfileImage(file: File): Flow<Resource<BioResponse>> {

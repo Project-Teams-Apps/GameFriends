@@ -7,6 +7,7 @@ import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.preferences.TokenPreferences
 import com.gamefriends.core.data.source.remote.RemoteSource
 import com.gamefriends.core.data.source.remote.network.ApiResponse
+import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.ErrorResponse
 import com.gamefriends.core.data.source.remote.response.ListItem
@@ -141,6 +142,22 @@ class UserRepository @Inject constructor(
         return flow {
             val userId = tokenPreferences.getToken().first().userId
             emitAll(remoteSource.getListContentFeed(localDataSources, userId))
+        }
+    }
+
+    override fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
+        emit(Resource.Loading())
+
+        val userRequestId = tokenPreferences.getToken().first().userId
+        remoteSource.addFriendRequest(userRequestId, userAcceptId).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
         }
     }
 

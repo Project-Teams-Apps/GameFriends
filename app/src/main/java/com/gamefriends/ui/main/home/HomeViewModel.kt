@@ -16,4 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel() {
     fun fetchContentFeed(): Flow<PagingData<FeedUserEntity>> = userUseCase.fetchListContent().cachedIn(viewModelScope)
+
+    fun addFriendRequest(userAcceptId: String) = userUseCase.addFriendRequest(userAcceptId).asLiveData()
 }

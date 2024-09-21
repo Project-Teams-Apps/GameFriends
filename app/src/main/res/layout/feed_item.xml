@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="75dp"
         android:clickable="true"
         app:shapeAppearanceOverlay="@style/fab_3_rounded"
         android:contentDescription="@string/game_played"
@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="60dp">
 
         <TextView
             android:id="@+id/usernameTv"
@@ -71,6 +71,8 @@
             android:id="@+id/flexboxGamePlayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             app:flexWrap="wrap"
             app:justifyContent="flex_start">
         </com.google.android.flexbox.FlexboxLayout>
@@ -79,6 +81,8 @@
             android:id="@+id/hobbyGamePlayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             app:flexWrap="wrap"
             app:justifyContent="flex_start">
         </com.google.android.flexbox.FlexboxLayout>

@@ -1,6 +1,7 @@
 package com.gamefriends.ui.main.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.gamefriends.R
+import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.ui.LoadingStateAdapter
 import com.gamefriends.core.ui.UserAdapter
 import com.gamefriends.databinding.FragmentHomeBinding
@@ -49,6 +54,10 @@ class HomeFragment : Fragment() {
         binding.listFeedRv.layoutManager = layoutManager
         binding.listFeedRv.addItemDecoration(itemDecoration)
 
+        val snapHelper = LinearSnapHelper()
+
+        snapHelper.attachToRecyclerView(binding.listFeedRv)
+
         binding.listFeedRv.adapter = adapter.apply {
             withLoadStateHeaderAndFooter(
                 header = LoadingStateAdapter {
@@ -60,8 +69,16 @@ class HomeFragment : Fragment() {
                 }
             )
 
-            onItemCLick = {
-
+            onItemCLick = { data ->
+                viewModel.addFriendRequest(data.userId).observe(viewLifecycleOwner) { response ->
+                    when(response) {
+                        is Resource.Error -> Log.d("FRIEND REQUEST", "Add Friend Request: Error")
+                        is Resource.Loading -> Log.d("FRIEND REQUEST", "Add Friend Request: Loading")
+                        is Resource.Success -> {
+                            Log.d("FRIEND REQUEST", "Add Friend Request: Success")
+                        }
+                    }
+                }
             }
 
             lifecycleScope.launch {

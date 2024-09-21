@@ -1,6 +1,6 @@
 package com.gamefriends.core.data.source.remote
 
-import androidx.lifecycle.LiveData
+
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -9,13 +9,11 @@ import com.gamefriends.core.data.source.local.LocalDataSources
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.network.ApiService
+import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
-import com.gamefriends.core.data.source.remote.response.ListItem
-import com.gamefriends.core.data.source.remote.response.ListResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
-import com.gamefriends.core.domain.model.Token
 import com.gamefriends.core.paging.ContentPagingSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -94,6 +92,20 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
                 localDataSources.getAllFeedUser()
             }
         ).flow
+    }
+
+    fun addFriendRequest(userRequestId: String, userAcceptId: String):Flow<ApiResponse<AddFriendRequestResponse>> = flow {
+        try {
+            val response = apiService.addFriendRequest(userRequestId, userAcceptId)
+
+            if (response.data?.userRequestId?.isNotEmpty() == true)  {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
     }
 
     suspend fun gamePlayedBio(userId: String, gamePlayedString: List<String>): Flow<ApiResponse<BioResponse>> =

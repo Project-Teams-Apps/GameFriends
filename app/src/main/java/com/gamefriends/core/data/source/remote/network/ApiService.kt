@@ -1,6 +1,7 @@
 package com.gamefriends.core.data.source.remote.network
 
 import com.gamefriends.core.data.source.remote.DTO
+import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.ListResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
@@ -40,6 +41,12 @@ interface ApiService {
         @Query("limit") limit: Int = 5,
         @Query("userId") userId: String
     ): ListResponse
+
+    @POST("/api/content/friend/request")
+    suspend fun addFriendRequest(
+        @Query("userRequestId") userRequestId: String,
+        @Query("userAcceptId") userAcceptId: String
+    ): AddFriendRequestResponse
 
     @PATCH("profile/{id}")
     suspend fun gamePlayedBio(
