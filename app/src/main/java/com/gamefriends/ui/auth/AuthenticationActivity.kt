@@ -32,22 +32,22 @@ class AuthenticationActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.container) as? NavHostFragment
         val navController = navHostFragment?.navController
 
-        if (navController != null) {
-            aunthenticationViewModel.getToken.observe(this) { user ->
-                if (user.token.isNotEmpty()) {
-                    Log.d("AuthActivity", "Token is not empty: ${user.token}")
-                    try {
-                        val mainNavController = findNavController(R.id.container)
-                        if (mainNavController.currentDestination?.id != R.id.homeFragment) {
-                            mainNavController.navigate(R.id.main_activity)
-                        }
-                    } catch (e: Exception) {
-                        Log.e("AuthActivity", "Navigation error: ${e.message}")
-                    }
-                } else {
-                    Log.d("AuthActivity", "Token is empty.")
-                }
-            }
-        }
+//        if (navController != null) {
+//            aunthenticationViewModel.getToken.observe(this) { user ->
+//                if (user.token.isNotEmpty()) {
+//                    Log.d("AuthActivity", "Token is not empty: ${user.token}")
+//                    try {
+//                        val mainNavController = findNavController(R.id.container)
+//                        if (mainNavController.currentDestination?.id != R.id.homeFragment) {
+//                            mainNavController.navigate(R.id.main_activity)
+//                        }
+//                    } catch (e: Exception) {
+//                        Log.e("AuthActivity", "Navigation error: ${e.message}")
+//                    }
+//                } else {
+//                    Log.d("AuthActivity", "Token is empty.")
+//                }
+//            }
+//        }
     }
 }

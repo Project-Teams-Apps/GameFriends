@@ -25,12 +25,11 @@ class NetworkModule {
 
         val authInterceptor = Interceptor { chain ->
             val originalRequest = chain.request()
-            // Fetch the token dynamically for each request
             val token = runBlocking {
                 tokenPreferences.getToken().first().token
             }
 
-            // Add the Authorization header with the token
+
             val requestWithAuth = originalRequest.newBuilder()
                 .addHeader("Authorization", "Bearer $token")
                 .build()

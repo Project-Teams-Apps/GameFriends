@@ -116,11 +116,45 @@
         android:id="@+id/hobbyFragment"
         android:name="com.gamefriends.ui.bio.hobby.HobbyFragment"
         android:label="hobbyFragment"
-        tools:layout="@layout/fragment_hobby"/>
+        tools:layout="@layout/fragment_hobby">
+        <action
+            android:id="@+id/action_hobbyFragment_to_bioFragment"
+            app:destination="@id/bioFragment" />
+        <action
+            android:id="@+id/action_hobbyFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bioFragment"
+        android:name="com.gamefriends.ui.bio.biouser.BioUserFragment"
+        android:label="@string/bio"
+        tools:layout="@layout/fragment_bio_user">
+        <action
+            android:id="@+id/action_bioFragment_to_uploadImageFragment"
+            app:destination="@id/uploadImageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.gamefriends.ui.bio.location.LocationFragment"
+        android:label="@string/your_location"
+        tools:layout="@layout/fragment_location">
+        <action
+            android:id="@+id/action_locationFragment_to_bioFragment"
+            app:destination="@id/bioFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/uploadImageFragment"
+        android:name="com.gamefriends.ui.bio.image.ChooseImageFragment"
+        android:label="@string/input_picture"
+        tools:layout="@layout/fragment_choose_image"/>
+
 
     <activity
         android:id="@+id/main_activity"
-        android:name="com.gamefriends.MainActivity"
+        android:name="com.gamefriends.ui.main.MainActivity"
         android:label="MainActivity"
         tools:layout="@layout/activity_main"/>
 
