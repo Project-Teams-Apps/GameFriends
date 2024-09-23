@@ -1,7 +1,7 @@
 package com.gamefriends.core.data.source
 
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
+
 import com.gamefriends.core.data.source.local.LocalDataSources
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.preferences.TokenPreferences
@@ -9,23 +9,17 @@ import com.gamefriends.core.data.source.remote.RemoteSource
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
-import com.gamefriends.core.data.source.remote.response.ErrorResponse
-import com.gamefriends.core.data.source.remote.response.ListItem
-import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
-import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.BioUser
+import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.core.domain.model.Token
 import com.gamefriends.core.domain.repository.IUserRepository
 import com.gamefriends.core.utils.AppExecutors
-import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
-import retrofit2.HttpException
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -40,6 +34,8 @@ class UserRepository @Inject constructor(
     override fun tokenProvider(): Flow<Token> = tokenPreferences.getToken()
 
     override fun bioUserProvider(): Flow<BioUser> = tokenPreferences.getBioUser()
+
+    override fun profileUserProvider(): Flow<ProfileUser> = tokenPreferences.getProfileUser()
 
     override fun login(email: String, password: String): Flow<Resource<Token>> = flow {
         emit(Resource.Loading())
@@ -145,6 +141,33 @@ class UserRepository @Inject constructor(
         }
     }
 
+    override fun getProfileUser(): Flow<Resource<ProfileUser>> = flow {
+        emit(Resource.Loading())
+
+        val userId = tokenPreferences.getToken().first().userId
+
+        remoteSource.getProfile(userId).collect() { apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val data = apiResponse.data.data
+                    val name = data?.name ?: ""
+                    val email = data?.email ?: ""
+                    val bio = data?.bioUser?.bio ?: ""
+                    val gender = data?.bioUser?.gender ?: ""
+                    val gamePlayed = data?.bioUser?.gamePlayed as List<String>
+                    val hobby = data.bioUser.hobby as List<String>
+                    val location = data.bioUser.location ?: ""
+                    val profilePictureUrl = data.bioUser.profilePicureUrl ?: ""
+                    val profileUser = ProfileUser(userId, name, email, bio, gender, gamePlayed, hobby, location, profilePictureUrl)
+                    tokenPreferences.saveProfileUser(profileUser)
+                    emit(Resource.Success(profileUser))
+                }
+            }
+        }
+    }
+
     override fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
         emit(Resource.Loading())
 
@@ -160,7 +183,6 @@ class UserRepository @Inject constructor(
             }
         }
     }
-
 
     override suspend fun saveGamePlayedUser(gamePlayed: List<String>) {
         val bioUser = BioUser(gamePlayed = gamePlayed)

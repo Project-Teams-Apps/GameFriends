@@ -30,7 +30,6 @@ class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>
                 usernameTv.text = data.name
                 locationText.text = data.location
                 genderTv.text = data.gender
-                bioTv.text = data.bio
 
                 flexboxGamePlayed.removeAllViews()
                 hobbyGamePlayed.removeAllViews()

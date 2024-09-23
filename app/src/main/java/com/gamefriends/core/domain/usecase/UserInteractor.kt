@@ -1,15 +1,15 @@
 package com.gamefriends.core.domain.usecase
 
+import android.provider.ContactsContract.Profile
 import androidx.paging.PagingData
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
-import com.gamefriends.core.data.source.remote.response.ListItem
-import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.BioUser
+import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.core.domain.model.Token
 import com.gamefriends.core.domain.repository.IUserRepository
 import kotlinx.coroutines.flow.Flow
@@ -23,6 +23,10 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
 
     override fun getBioUser(): Flow<BioUser> {
         return userRepository.bioUserProvider()
+    }
+
+    override fun getProfileDataStore(): Flow<ProfileUser> {
+        return userRepository.profileUserProvider()
     }
 
     override fun loginUseCase(email: String, password: String): Flow<Resource<Token>> {
@@ -43,6 +47,10 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
 
     override fun fetchListContent(): Flow<PagingData<FeedUserEntity>> {
         return userRepository.fetchListContent()
+    }
+
+    override fun profileUseCase(): Flow<Resource<ProfileUser>> {
+        return userRepository.getProfileUser()
     }
 
     override fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>> {

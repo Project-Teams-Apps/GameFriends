@@ -5,11 +5,10 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
-import com.gamefriends.core.data.source.remote.response.ListItem
-import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.BioUser
+import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.core.domain.model.Token
 import kotlinx.coroutines.flow.Flow
 import java.io.File
@@ -18,6 +17,8 @@ interface IUserRepository {
     fun tokenProvider(): Flow<Token>
 
     fun bioUserProvider(): Flow<BioUser>
+
+    fun profileUserProvider(): Flow<ProfileUser>
 
     fun login(email: String, password: String): Flow<Resource<Token>>
 
@@ -30,6 +31,8 @@ interface IUserRepository {
     fun uploadProfileImage(file: File): Flow<Resource<BioResponse>>
 
     fun fetchListContent(): Flow<PagingData<FeedUserEntity>>
+
+    fun getProfileUser(): Flow<Resource<ProfileUser>>
 
     fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>>
 

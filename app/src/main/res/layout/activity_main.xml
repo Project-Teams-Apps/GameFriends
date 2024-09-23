@@ -34,11 +34,12 @@
         app:cbn_curve_radius="100dp"
         app:cbn_selected_icon_size="48dp"
         app:cbn_selectedIconColor="@color/white"
-        app:cbn_titleColor="@color/white"
+        app:cbn_titleColor="@color/transparent"
         app:cbn_titleFont="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
 
