@@ -8,6 +8,7 @@ import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
 import com.gamefriends.core.data.source.remote.response.ListItem
 import com.gamefriends.core.data.source.remote.response.LoginResponse
+import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.BioUser
@@ -24,6 +25,10 @@ interface UserUseCase {
     fun getProfileDataStore(): Flow<ProfileUser>
 
     fun loginUseCase(email: String, password: String): Flow<Resource<Token>>
+
+    fun logoutUseCase(): Flow<Resource<LogoutResponse>>
+
+    suspend fun deleteDatastore()
 
     fun registerUseCase(email: String, name: String, password: String): Flow<Resource<RegisterResponse>>
 

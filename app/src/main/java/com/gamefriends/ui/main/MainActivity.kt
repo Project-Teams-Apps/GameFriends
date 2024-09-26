@@ -39,22 +39,6 @@ class MainActivity : AppCompatActivity() {
         initNavHost()
         binding.setUpBottomNavigation()
 
-        viewModel.getToken.observe(this) {data->
-            if (data.token.isEmpty()) {
-                try {
-                    val mainNavController = findNavController(R.id.containerFragment)
-                    if (mainNavController.currentDestination?.id != R.id.startedOneFragment) {
-                        mainNavController.navigate(R.id.authActivity)
-                    }
-                } catch (e: Exception) {
-                    Log.e("AuthActivity", "Navigation error: ${e.message}")
-                }
-            } else {
-                Log.e("AuthActivity", "Token Empty: ${data.token}")
-            }
-        }
-
-
     }
 
     private fun initNavHost() {

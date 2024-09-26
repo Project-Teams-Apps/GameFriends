@@ -13,9 +13,11 @@ import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
+import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.paging.ContentPagingSource
+import com.qamar.curvedbottomnaviagtion.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -101,6 +103,21 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             val response = apiService.getProfile(userId)
 
             if (response.data?.name?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    fun logoutUser(userId: String, email: String): Flow<ApiResponse<LogoutResponse>> = flow {
+        try {
+            val requestBody = DTO.LogoutBody(userId, email)
+            val response = apiService.logoutUser(requestBody)
+
+            if (response.data?.isNotEmpty() == true) {
                 emit(ApiResponse.Success(response))
             } else {
                 emit(ApiResponse.Empty)

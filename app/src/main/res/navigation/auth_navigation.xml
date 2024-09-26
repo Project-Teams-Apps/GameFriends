@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_navigation"
     android:label="host"
-    app:startDestination="@id/startedOneFragment">
+    app:startDestination="@id/startedThreeFragment">
 
     <fragment
         android:id="@+id/startedOneFragment"

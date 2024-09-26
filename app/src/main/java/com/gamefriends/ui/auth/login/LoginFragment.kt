@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.gamefriends.R
@@ -36,8 +37,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,26 +47,26 @@ class LoginFragment : Fragment() {
             val email = binding.emailLoginEdt.text.toString().trim()
             val password = binding.passwordLoginEdt.text.toString().trim()
 
-            // Input validation
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
+            } else if(password.length < 8) {
+                binding.passwordLoginEdt.error = "Password Must 8 Character"
+                binding.passwordEdtLayout.isPasswordVisibilityToggleEnabled = false
+                return@setOnClickListener
             }
 
-            // Observe the login response
             loginViewModel.login(email, password).observe(viewLifecycleOwner) { data ->
                 when (data) {
                     is Resource.Error -> {
-                        Toast.makeText(context, "Error: ${data.message}", Toast.LENGTH_SHORT).show()
+                        binding.progreesLoading.visibility = View.GONE
                     }
                     is Resource.Loading -> {
-                        Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                        binding.progreesLoading.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
+                        binding.progreesLoading.visibility = View.GONE
                         data.data?.let { token ->
-                            Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
-
-                            // Navigate on success
                             it.findNavController().navigate(R.id.action_loginFragment_to_main_activity)
                         } ?: run {
                             Toast.makeText(context, "Unexpected error: No token received", Toast.LENGTH_SHORT).show()

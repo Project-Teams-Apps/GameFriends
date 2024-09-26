@@ -20,7 +20,11 @@
         android:id="@+id/profileFragment"
         android:label="ProfileFragment"
         android:name="com.gamefriends.ui.main.profile.ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_authActivity"
+            app:destination="@id/authActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/notificationFragment"

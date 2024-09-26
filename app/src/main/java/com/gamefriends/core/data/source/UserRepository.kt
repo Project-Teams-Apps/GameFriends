@@ -9,6 +9,7 @@ import com.gamefriends.core.data.source.remote.RemoteSource
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.domain.model.BioUser
 import com.gamefriends.core.domain.model.ProfileUser
@@ -57,6 +58,31 @@ class UserRepository @Inject constructor(
                 }
             }
         }
+    }
+
+    override fun logout(): Flow<Resource<LogoutResponse>> = flow {
+        emit(Resource.Loading())
+        val userId = tokenPreferences.getToken().first().userId
+        val email = tokenPreferences.getProfileUser().first().email
+        remoteSource.logoutUser(userId, email).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> {
+                    emit(Resource.Error("No data found, token is empty"))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resource.Error(apiResponse.errorMessage ?: "An unknown error occurred"))
+                }
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+
+    }
+
+    override suspend fun deleteDataStore(){
+        tokenPreferences.logout()
     }
 
     override fun register(email: String, name: String, password: String): Flow<Resource<RegisterResponse>> = flow {

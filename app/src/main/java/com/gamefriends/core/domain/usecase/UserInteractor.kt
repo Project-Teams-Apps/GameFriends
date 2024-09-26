@@ -6,6 +6,7 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.BioUser
@@ -31,6 +32,14 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
 
     override fun loginUseCase(email: String, password: String): Flow<Resource<Token>> {
         return userRepository.login(email, password)
+    }
+
+    override fun logoutUseCase(): Flow<Resource<LogoutResponse>> {
+        return userRepository.logout()
+    }
+
+    override suspend fun deleteDatastore() {
+        return userRepository.deleteDataStore()
     }
 
     override fun registerUseCase(

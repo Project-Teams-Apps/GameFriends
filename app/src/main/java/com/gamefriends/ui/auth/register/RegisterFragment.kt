@@ -49,7 +49,15 @@ class RegisterFragment : Fragment() {
 
             if (email.isEmpty() || name.isEmpty() || password.isEmpty()) {
                 Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                 binding.apply {
+                     emailRegisterEdt.error = "Field must be fill"
+                     nameRegisterEdt.error = "Field must be fill"
+                     passwordRegisterEdt.error = "Field must be fill"
+                 }
                 return@setOnClickListener
+            } else if(password.length < 8) {
+                binding.passwordEdtLayout.isPasswordVisibilityToggleEnabled = false
+                binding.passwordRegisterEdt.error = "Password Length must 8 Character"
             }
 
             registerViewModel.register(email, name, password).observe(viewLifecycleOwner) { data->

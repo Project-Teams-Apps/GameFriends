@@ -10,13 +10,18 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.bumptech.glide.Glide
 import com.gamefriends.R
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.databinding.FragmentProfileBinding
+import com.qamar.curvedbottomnaviagtion.log
 import com.qamar.curvedbottomnaviagtion.setMargins
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -31,6 +36,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpProfile()
+        logout()
     }
 
     override fun onCreateView(
@@ -96,4 +102,21 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private fun logout() {
+        binding.logoutBtn.setOnClickListener {
+            viewModel.logoutUser().observe(viewLifecycleOwner) { response ->
+                when(response) {
+                    is Resource.Error -> Log.d("Error", "Logout: Error")
+                    is Resource.Loading -> Log.d("Loading", "Logout: Loading")
+                    is Resource.Success -> {
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            viewModel.logoutDatastore()
+                        }
+                        it.findNavController().navigate(R.id.action_profileFragment_to_authActivity)
+                    }
+                }
+            }
+
+        }
+    }
 }

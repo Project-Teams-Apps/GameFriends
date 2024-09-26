@@ -5,6 +5,7 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.BioUser
@@ -21,6 +22,10 @@ interface IUserRepository {
     fun profileUserProvider(): Flow<ProfileUser>
 
     fun login(email: String, password: String): Flow<Resource<Token>>
+
+    fun logout(): Flow<Resource<LogoutResponse>>
+
+    suspend fun deleteDataStore()
 
     fun register(email: String, name: String, password: String): Flow<Resource<RegisterResponse>>
 

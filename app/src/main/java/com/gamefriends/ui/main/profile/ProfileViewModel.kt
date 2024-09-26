@@ -11,4 +11,8 @@ class ProfileViewModel @Inject constructor(private val userUseCase: UserUseCase)
     fun getProfileUser() = userUseCase.profileUseCase().asLiveData()
 
     val getProfileData = userUseCase.getProfileDataStore().asLiveData()
+
+    fun logoutUser() = userUseCase.logoutUseCase().asLiveData()
+
+    suspend fun logoutDatastore() = userUseCase.deleteDatastore()
 }

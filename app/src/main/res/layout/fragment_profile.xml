@@ -8,6 +8,17 @@
     android:background="@color/primaryColor"
     android:fillViewport="true">
 
+
+    <ImageButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_logout_24"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="14dp"/>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -49,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/username"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/white"/>
             
