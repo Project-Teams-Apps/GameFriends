@@ -34,6 +34,14 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         return userRepository.login(email, password)
     }
 
+    override fun changePasswordUseCase(email: String): Flow<Resource<RegisterResponse>>  = userRepository.changePassword(email)
+
+    override fun changePasswordUserUseCase(
+        email: String,
+        otp: String,
+        password: String,
+    ): Flow<Resource<RegisterResponse>>  = userRepository.changePasswordUser(email, otp, password)
+
     override fun logoutUseCase(): Flow<Resource<LogoutResponse>> {
         return userRepository.logout()
     }
