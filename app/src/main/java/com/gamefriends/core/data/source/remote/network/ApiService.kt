@@ -37,6 +37,16 @@ interface ApiService {
         @Body verifyOtpRegisterBody: DTO.VerifyOtpRegisterBody
     ): VerifyRegisterResponse
 
+    @POST("auth/forgotpassword")
+    suspend fun forgotPassword(
+        @Body forgotPasswordBody: DTO.EmailBody
+    ): RegisterResponse
+
+    @POST("auth/changepassword")
+    suspend fun changePassword(
+        @Body changePasswordBody: DTO.ChangePasswordBody
+    ): RegisterResponse
+
     @GET("api/content")
     suspend fun getListContent(
         @Query("page") page: Int = 1,

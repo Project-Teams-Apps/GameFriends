@@ -26,6 +26,10 @@ interface UserUseCase {
 
     fun loginUseCase(email: String, password: String): Flow<Resource<Token>>
 
+    fun changePasswordUseCase(email: String): Flow<Resource<RegisterResponse>>
+
+    fun changePasswordUserUseCase(email: String, otp: String, password: String): Flow<Resource<RegisterResponse>>
+
     fun logoutUseCase(): Flow<Resource<LogoutResponse>>
 
     suspend fun deleteDatastore()

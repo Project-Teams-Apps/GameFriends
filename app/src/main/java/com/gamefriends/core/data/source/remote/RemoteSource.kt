@@ -84,6 +84,41 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             }
         }.flowOn(Dispatchers.IO)
 
+    suspend fun forgotPassword(email: String): Flow<ApiResponse<RegisterResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.EmailBody(email)
+                val response = apiService.forgotPassword(requestBody)
+
+                if (response.data?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+
+    suspend fun changePassword(email: String, otp: String, password: String): Flow<ApiResponse<RegisterResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.ChangePasswordBody(email, otp, password)
+                val response = apiService.changePassword(requestBody)
+
+                if (response.data?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+
+
     @OptIn(ExperimentalPagingApi::class)
     fun getListContentFeed(localDataSources: LocalDataSources, userId: String): Flow<PagingData<FeedUserEntity>> {
         return Pager(

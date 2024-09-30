@@ -31,6 +31,10 @@ class LoginFragment : Fragment() {
             it.findNavController().navigate(R.id.action_loginFragment_to_startedThreeFragment)
         }
 
+        binding.forgotPasswordBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_loginFragment_to_emailPasswordFragment)
+        }
+
         loginAuth()
     }
 

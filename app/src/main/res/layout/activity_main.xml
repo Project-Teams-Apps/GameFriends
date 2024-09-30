@@ -31,7 +31,7 @@
         app:cbn_iconColor="@color/white"
         app:cbn_height="76dp"
         app:cbn_icon_size="24dp"
-        app:cbn_curve_radius="100dp"
+        app:cbn_curve_radius="30dp"
         app:cbn_selected_icon_size="48dp"
         app:cbn_selectedIconColor="@color/white"
         app:cbn_titleColor="@color/transparent"

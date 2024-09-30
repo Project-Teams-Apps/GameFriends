@@ -1,13 +1,11 @@
 package com.gamefriends.core.data.source.preferences
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import com.gamefriends.core.domain.model.BioUser
 import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.core.domain.model.Token
@@ -132,11 +130,13 @@ class TokenPreferences @Inject constructor(private val dataStore: DataStore<Pref
         private val gamePlayedUser = stringSetPreferencesKey("gamePlayedUser")
         private val hobbyUser = stringSetPreferencesKey("hobbyUser")
 
+        private val OTP = stringPreferencesKey("OTP")
         private val GAMEPLAYED = stringSetPreferencesKey("gamePlayed")
         private val GENDER = stringPreferencesKey("gender")
         private val HOBBY = stringSetPreferencesKey("hobby")
         private val LOCATION = stringPreferencesKey("location")
         private val BIO = stringPreferencesKey("bio")
+
 
     }
 }

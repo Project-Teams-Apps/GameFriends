@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_loginFragment_to_main_activity"
             app:destination="@id/main_activity" />
+        <action
+            android:id="@+id/action_loginFragment_to_emailPasswordFragment"
+            app:destination="@id/emailPasswordFragment" />
     </fragment>
 
     <fragment
@@ -151,11 +154,55 @@
         android:label="@string/input_picture"
         tools:layout="@layout/fragment_choose_image"/>
 
+    <fragment
+        android:id="@+id/emailPasswordFragment"
+        android:name="com.gamefriends.ui.auth.password.emailflow.EmailPasswordFragment"
+        android:label="chang Email Password"
+        tools:layout="@layout/fragment_email_password">
+        <action
+            android:id="@+id/action_emailPasswordFragment_to_otpForgotPasswordFragment"
+            app:destination="@id/otpForgotPasswordFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/otpForgotPasswordFragment"
+        android:name="com.gamefriends.ui.auth.password.otpflow.VerifyOtpFragment"
+        android:label="verifyOtpForgotPassword"
+        tools:layout="@layout/fragment_verify_otp">
+
+        <argument
+            android:name="email"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_otpForgotPasswordFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.gamefriends.ui.auth.password.changePassword.ForgotPasswordFragment"
+        android:label="Change Password"
+        tools:layout="@layout/fragment_forgot_password">
+
+        <argument
+            android:name="otp"
+            app:argType="string"/>
+
+        <argument
+            android:name="email"
+            app:argType="string"/>
+
+        <action
+            android:id="@+id/action_changePasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
     <activity
         android:id="@+id/main_activity"
         android:name="com.gamefriends.ui.main.MainActivity"
         android:label="MainActivity"
         tools:layout="@layout/activity_main"/>
+
 
 </navigation>

@@ -1,5 +1,6 @@
 package com.gamefriends.ui.main.profile
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.core.view.marginStart
+import androidx.core.view.setPadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -18,6 +21,7 @@ import com.gamefriends.R
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.databinding.FragmentProfileBinding
+import com.google.android.material.chip.Chip
 import com.qamar.curvedbottomnaviagtion.log
 import com.qamar.curvedbottomnaviagtion.setMargins
 import dagger.hilt.android.AndroidEntryPoint
@@ -79,11 +83,12 @@ class ProfileFragment : Fragment() {
 
         // Add gamePlayed chips
         profile.gamePlayed.forEach { game ->
-            val chip = TextView(requireContext()).apply {
+            val chip = Chip(requireContext()).apply {
                 text = game
-                setPadding(16, 8, 16, 8)
-                setMargins(10, 10, 10, 10)  // Consistent margins
-                setBackgroundResource(R.drawable.chip_background)
+                setPadding(8,8,8,8)
+                setMargins(8,8,8,8)
+                isEnabled = false
+                setChipBackgroundColorResource(R.color.secondaryColor)
                 setTextColor(ContextCompat.getColor(context, R.color.white))
             }
             binding.gamePlayedFlexBox.addView(chip)
@@ -91,11 +96,12 @@ class ProfileFragment : Fragment() {
 
         // Add hobby chips
         profile.hobby.forEach { hobby ->
-            val chip = TextView(requireContext()).apply {
+            val chip = Chip(requireContext()).apply {
                 text = hobby
-                setPadding(16, 8, 16, 8)
-                setMargins(10, 10, 10, 10)  // Adjusted to be consistent
-                setBackgroundResource(R.drawable.chip_background)
+                isEnabled = false
+                setPadding(8,8,8,8)
+                setMargins(8,8,8,8)
+                setChipBackgroundColorResource(R.color.secondaryColor)
                 setTextColor(ContextCompat.getColor(context, R.color.white))
             }
             binding.hobbyFlexBox.addView(chip)

@@ -31,6 +31,10 @@ interface IUserRepository {
 
     fun verifyOtpRegister(email: String, otp: String): Flow<Resource<Token>>
 
+    fun changePassword(email: String): Flow<Resource<RegisterResponse>>
+
+    fun changePasswordUser(email: String, otp: String, password: String): Flow<Resource<RegisterResponse>>
+
     fun editBioUser(bio: String, gender: String, gamePlayed: List<String>, location: String, hobby: List<String>): Flow<Resource<BioResponse>>
 
     fun uploadProfileImage(file: File): Flow<Resource<BioResponse>>

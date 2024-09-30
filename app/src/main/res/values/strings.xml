@@ -70,6 +70,7 @@
     <string name="bio">Bio</string>
     <string name="notification">Notification</string>
     <string name="retry">Retry</string>
+    <string name="change_password_instruction">Enter the email address you used when you joined and we’ll send you instructions to reset your password.</string>
 
 
     <string-array name="location_array">

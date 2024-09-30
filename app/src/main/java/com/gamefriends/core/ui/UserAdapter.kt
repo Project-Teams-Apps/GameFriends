@@ -15,6 +15,7 @@ import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.ListItem
 import com.gamefriends.core.domain.model.FeedUser
 import com.gamefriends.databinding.FeedItemBinding
+import com.google.android.material.chip.Chip
 import com.qamar.curvedbottomnaviagtion.setMargins
 
 class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>(DIFF_CALLBACK) {
@@ -35,11 +36,12 @@ class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>
                 hobbyGamePlayed.removeAllViews()
 
                 data.gamePlayed.forEach { game->
-                    val chip = TextView(itemView.context).apply {
+                    val chip = Chip(itemView.context).apply {
                         text = game
-                        setPadding(16, 8, 16, 8)
-                        setMargins(3,0,3,0)
-                        setBackgroundResource(R.drawable.chip_background)
+                        setPadding(8,8,8,8)
+                        setMargins(8,8,8,8)
+                        isEnabled = false
+                        setChipBackgroundColorResource(R.color.secondaryColor)
                         setTextColor(ContextCompat.getColor(context, R.color.white))
                     }
 
@@ -47,10 +49,12 @@ class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>
                 }
 
                 data.hobby.forEach { hobby->
-                    val chip = TextView(itemView.context).apply {
+                    val chip = Chip(itemView.context).apply {
                         text = hobby
-                        setPadding(16, 8, 16, 8)
-                        setBackgroundResource(R.drawable.chip_background)
+                        setPadding(8,8,8,8)
+                        setMargins(8,8,8,8)
+                        isEnabled = false
+                        setChipBackgroundColorResource(R.color.secondaryColor)
                         setTextColor(ContextCompat.getColor(context, R.color.white))
                     }
 

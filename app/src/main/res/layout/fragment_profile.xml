@@ -136,15 +136,18 @@
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/gamePlayedFlexBox"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/linearLayout3"
         app:layout_constraintEnd_toEndOf="@id/linearLayout3"
         app:layout_constraintTop_toBottomOf="@id/gamePlayedTv"
-        app:chipSpacing="16dp"
+        app:chipSpacing="8dp"
         android:padding="8dp"
-        app:showDividerHorizontal="beginning"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:showDivider="beginning|middle"
+        app:dividerDrawable="@drawable/divider_bg"
         app:flexWrap="wrap"
-        app:justifyContent="space_evenly"/>
+        app:justifyContent="flex_start"/>
 
     <TextView
         android:id="@+id/hobbyTv"
@@ -162,14 +165,18 @@
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/hobbyFlexBox"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/linearLayout3"
         app:layout_constraintEnd_toEndOf="@id/linearLayout3"
         app:layout_constraintTop_toBottomOf="@id/hobbyTv"
         app:chipSpacing="8dp"
         android:padding="8dp"
         app:flexWrap="wrap"
-        app:justifyContent="space_evenly"/>
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:showDivider="beginning|middle"
+        app:dividerDrawable="@drawable/divider_bg"
+        app:justifyContent="flex_start"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/editProfileBtn"

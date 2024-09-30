@@ -109,7 +109,7 @@ class UserRepository @Inject constructor(
 
         remoteSource.verifyOtpRegister(email, otp).collect() {apiResponse ->
             when(apiResponse){
-                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                ApiResponse.Empty ->  emit(Resource.Error("No Data Found"))
                 is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
                 is ApiResponse.Success -> {
                     val tokenValue = apiResponse.data.token ?: ""
@@ -117,6 +117,40 @@ class UserRepository @Inject constructor(
                     val token = Token(userId = userId , token = tokenValue, isLogin = true)
                     tokenPreferences.saveToken(token)
                     emit(Resource.Success(token))
+                }
+            }
+        }
+    }
+
+    override fun changePassword(email: String): Flow<Resource<RegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        remoteSource.forgotPassword(email).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty ->  emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error ->  emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val data = apiResponse.data
+                    emit(Resource.Success(data))
+                }
+            }
+        }
+    }
+
+    override fun changePasswordUser(
+        email: String,
+        otp: String,
+        password: String,
+    ): Flow<Resource<RegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        remoteSource.changePassword(email, otp, password).collect() { apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val data = apiResponse.data
+                    emit(Resource.Success(data))
                 }
             }
         }
