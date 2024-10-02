@@ -1,22 +1,19 @@
 package com.gamefriends.core.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gamefriends.R
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
-import com.gamefriends.core.data.source.remote.response.ListItem
-import com.gamefriends.core.domain.model.FeedUser
 import com.gamefriends.databinding.FeedItemBinding
 import com.google.android.material.chip.Chip
 import com.qamar.curvedbottomnaviagtion.setMargins
+
+
 
 class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>(DIFF_CALLBACK) {
     var onItemCLick:((FeedUserEntity) -> Unit)? = null

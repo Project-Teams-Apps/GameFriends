@@ -1,31 +1,24 @@
 package com.gamefriends.ui.main.profile
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import androidx.core.view.marginStart
-import androidx.core.view.setPadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import com.bumptech.glide.Glide
 import com.gamefriends.R
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.databinding.FragmentProfileBinding
 import com.google.android.material.chip.Chip
-import com.qamar.curvedbottomnaviagtion.log
 import com.qamar.curvedbottomnaviagtion.setMargins
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -47,7 +40,6 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater)
         return binding.root
     }
@@ -77,11 +69,9 @@ class ProfileFragment : Fragment() {
             .into(binding.profileImage)
         binding.bioUserTv.text = profile.bio
 
-        // Clear existing views in FlexBoxLayouts
         binding.gamePlayedFlexBox.removeAllViews()
         binding.hobbyFlexBox.removeAllViews()
 
-        // Add gamePlayed chips
         profile.gamePlayed.forEach { game ->
             val chip = Chip(requireContext()).apply {
                 text = game
@@ -110,19 +100,7 @@ class ProfileFragment : Fragment() {
 
     private fun logout() {
         binding.logoutBtn.setOnClickListener {
-            viewModel.logoutUser().observe(viewLifecycleOwner) { response ->
-                when(response) {
-                    is Resource.Error -> Log.d("Error", "Logout: Error")
-                    is Resource.Loading -> Log.d("Loading", "Logout: Loading")
-                    is Resource.Success -> {
-                        viewLifecycleOwner.lifecycleScope.launch {
-                            viewModel.logoutDatastore()
-                        }
-                        it.findNavController().navigate(R.id.action_profileFragment_to_authActivity)
-                    }
-                }
-            }
-
+            it.findNavController().navigate(R.id.action_profileFragment_to_settingActivity)
         }
     }
 }
