@@ -9,6 +9,7 @@ import com.gamefriends.core.data.source.remote.RemoteSource
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.domain.model.BioUser
@@ -17,6 +18,7 @@ import com.gamefriends.core.domain.model.Token
 import com.gamefriends.core.domain.repository.IUserRepository
 import com.gamefriends.core.utils.AppExecutors
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
@@ -194,6 +196,22 @@ class UserRepository @Inject constructor(
         }
     }
 
+    override fun fetchListRequestFriend(): Flow<Resource<ListNotificationResponse>> = flow {
+        emit(Resource.Loading())
+
+        val userId = tokenPreferences.getToken().first().userId
+        remoteSource.getListRequestFriend(userId).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty ->  emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
     override fun fetchListContent(): Flow<PagingData<FeedUserEntity>>{
         return flow {
             val userId = tokenPreferences.getToken().first().userId
@@ -238,6 +256,24 @@ class UserRepository @Inject constructor(
                 is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
                 is ApiResponse.Success -> {
                     val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun acceptFriendRequest(
+        userRequestId: String
+    ): Flow<Resource<AddFriendRequestResponse>> = flow {
+        emit(Resource.Loading())
+
+        val userAcceptId = tokenPreferences.getToken().first().userId
+        remoteSource.acceptFriendRequest(userRequestId, userAcceptId).collect() {apiResponese ->
+            when(apiResponese) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponese.errorMessage))
+                is ApiResponse.Success -> {
+                    val response  = apiResponese.data
                     emit(Resource.Success(response))
                 }
             }

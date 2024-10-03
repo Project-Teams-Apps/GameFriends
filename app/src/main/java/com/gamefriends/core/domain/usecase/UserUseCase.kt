@@ -7,6 +7,7 @@ import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
 import com.gamefriends.core.data.source.remote.response.ListItem
+import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
@@ -38,11 +39,15 @@ interface UserUseCase {
 
     fun verifyOtpUseCase(email: String, otp: String): Flow<Resource<Token>>
 
+    fun fetchListRequestFriend(): Flow<Resource<ListNotificationResponse>>
+
     fun fetchListContent(): Flow<PagingData<FeedUserEntity>>
 
     fun profileUseCase(): Flow<Resource<ProfileUser>>
 
     fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>>
+
+    fun acceptFriendRequest(userRequestId: String): Flow<Resource<AddFriendRequestResponse>>
 
     fun uploadProfileImage(file: File): Flow<Resource<BioResponse>>
 

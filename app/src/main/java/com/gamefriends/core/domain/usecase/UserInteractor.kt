@@ -6,6 +6,7 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
@@ -62,6 +63,10 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         return userRepository.verifyOtpRegister(email, otp)
     }
 
+    override fun fetchListRequestFriend(): Flow<Resource<ListNotificationResponse>> {
+        return userRepository.fetchListRequestFriend()
+    }
+
     override fun fetchListContent(): Flow<PagingData<FeedUserEntity>> {
         return userRepository.fetchListContent()
     }
@@ -72,6 +77,10 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
 
     override fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>> {
         return userRepository.addFriendRequest(userAcceptId)
+    }
+
+    override fun acceptFriendRequest(userRequestId: String): Flow<Resource<AddFriendRequestResponse>> {
+        return userRepository.addFriendRequest(userRequestId)
     }
 
     override fun uploadProfileImage(file: File): Flow<Resource<BioResponse>> {
