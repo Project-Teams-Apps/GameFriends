@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="150dp"
         android:clickable="true"
         app:shapeAppearanceOverlay="@style/fab_3_rounded"
         android:contentDescription="@string/game_played"
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Indonesia"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/white"/>
 
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Female"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_medium"/>
 
@@ -73,6 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            app:showDivider="beginning|middle"
+            app:dividerDrawable="@drawable/divider_bg"
             app:flexWrap="wrap"
             app:justifyContent="flex_start">
         </com.google.android.flexbox.FlexboxLayout>
@@ -83,17 +85,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            app:showDivider="beginning|middle"
+            app:dividerDrawable="@drawable/divider_bg"
             app:flexWrap="wrap"
             app:justifyContent="flex_start">
         </com.google.android.flexbox.FlexboxLayout>
-
-        <TextView
-            android:id="@+id/bioTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="Saya adalah mahasiswa Umsu"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_medium"/>
 
     </LinearLayout>
 

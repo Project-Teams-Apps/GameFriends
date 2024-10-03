@@ -1,14 +1,13 @@
 package com.gamefriends.core.data.source.preferences
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import com.gamefriends.core.domain.model.BioUser
+import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.core.domain.model.Token
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -40,6 +39,38 @@ class TokenPreferences @Inject constructor(private val dataStore: DataStore<Pref
             )
         }
     }
+
+    fun getProfileUser(): Flow<ProfileUser> {
+        return dataStore.data.map { preferences ->
+            ProfileUser(
+                preferences[USERID] ?: "",
+                preferences[nameUser] ?: "",
+                preferences[emailUser] ?: "",
+                preferences[bioUser] ?: "",
+                preferences[genderUser] ?: "",
+                preferences[gamePlayedUser]?.toList() ?: emptyList(),
+                preferences[hobbyUser]?.toList() ?: emptyList(),
+                preferences[locationUser] ?: "",
+                preferences[profilePictureUrl] ?: ""
+            )
+        }
+    }
+
+    suspend fun saveProfileUser(profileUser: ProfileUser) {
+        dataStore.edit { preferences ->
+            preferences[USERID] = profileUser.userId
+            preferences[nameUser] = profileUser.name
+            preferences[emailUser] = profileUser.email
+            preferences[bioUser] = profileUser.bio
+            preferences[genderUser] = profileUser.gender
+            preferences[gamePlayedUser] = profileUser.gamePlayed.toSet()
+            preferences[hobbyUser] = profileUser.hobby.toSet()
+            preferences[locationUser] = profileUser.location
+            preferences[profilePictureUrl] = profileUser.profilePictureUrl
+        }
+    }
+
+
 
     suspend fun saveGamePlayedUser(bioUser: BioUser) {
         dataStore.edit { preferences ->
@@ -90,10 +121,22 @@ class TokenPreferences @Inject constructor(private val dataStore: DataStore<Pref
         private val USERID = stringPreferencesKey("userId")
         private val TOKEN = stringPreferencesKey("token")
         private val IS_LOGIN = booleanPreferencesKey("isLogin")
+        private val nameUser = stringPreferencesKey("name")
+        private val emailUser = stringPreferencesKey("emailUser")
+        private val profilePictureUrl = stringPreferencesKey("profilePictureUrl")
+        private val locationUser = stringPreferencesKey("locationUser")
+        private val genderUser = stringPreferencesKey("genderUser")
+        private val bioUser = stringPreferencesKey("bioUser")
+        private val gamePlayedUser = stringSetPreferencesKey("gamePlayedUser")
+        private val hobbyUser = stringSetPreferencesKey("hobbyUser")
+
+        private val OTP = stringPreferencesKey("OTP")
         private val GAMEPLAYED = stringSetPreferencesKey("gamePlayed")
         private val GENDER = stringPreferencesKey("gender")
         private val HOBBY = stringSetPreferencesKey("hobby")
         private val LOCATION = stringPreferencesKey("location")
         private val BIO = stringPreferencesKey("bio")
+
+
     }
 }

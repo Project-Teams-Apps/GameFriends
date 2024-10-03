@@ -5,11 +5,14 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.GetProfileResponse
 import com.gamefriends.core.data.source.remote.response.ListItem
 import com.gamefriends.core.data.source.remote.response.LoginResponse
+import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.BioUser
+import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.core.domain.model.Token
 import kotlinx.coroutines.flow.Flow
 import java.io.File
@@ -17,15 +20,27 @@ import java.io.File
 interface UserUseCase {
     fun getToken(): Flow<Token>
 
-    fun getBioUser(): Flow<BioUser
-            >
+    fun getBioUser(): Flow<BioUser>
+
+    fun getProfileDataStore(): Flow<ProfileUser>
+
     fun loginUseCase(email: String, password: String): Flow<Resource<Token>>
+
+    fun changePasswordUseCase(email: String): Flow<Resource<RegisterResponse>>
+
+    fun changePasswordUserUseCase(email: String, otp: String, password: String): Flow<Resource<RegisterResponse>>
+
+    fun logoutUseCase(): Flow<Resource<LogoutResponse>>
+
+    suspend fun deleteDatastore()
 
     fun registerUseCase(email: String, name: String, password: String): Flow<Resource<RegisterResponse>>
 
     fun verifyOtpUseCase(email: String, otp: String): Flow<Resource<Token>>
 
     fun fetchListContent(): Flow<PagingData<FeedUserEntity>>
+
+    fun profileUseCase(): Flow<Resource<ProfileUser>>
 
     fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>>
 

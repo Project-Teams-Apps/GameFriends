@@ -20,7 +20,14 @@
         android:id="@+id/profileFragment"
         android:label="ProfileFragment"
         android:name="com.gamefriends.ui.main.profile.ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_authActivity"
+            app:destination="@id/authActivity" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingActivity"
+            app:destination="@id/settingActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/notificationFragment"
@@ -33,6 +40,12 @@
         android:label="ListChatFragment"
         android:name="com.gamefriends.ui.main.chat.ListChatFragment"
         tools:layout="@layout/fragment_list_chat"/>
+
+    <activity
+        android:id="@+id/settingActivity"
+        android:label="settingActivity"
+        android:name="com.gamefriends.ui.setting.SettingActivity"
+        tools:layout="@layout/activity_setting"/>
 
     <activity
         android:id="@+id/authActivity"

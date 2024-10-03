@@ -7,12 +7,15 @@ import com.gamefriends.core.data.source.local.enitity.RemoteEntity
 import com.gamefriends.core.data.source.local.room.Database
 import com.gamefriends.core.data.source.local.room.dao.FeedDao
 import com.gamefriends.core.data.source.local.room.dao.RemoteDao
+
+
 import javax.inject.Inject
 
-class LocalDataSources @Inject constructor(private val feedDao: FeedDao, private val remoteDao: RemoteDao, private val feedDatabase: Database) {
-
-
-
+class LocalDataSources @Inject constructor(
+    private val feedDao: FeedDao,
+    private val remoteDao: RemoteDao,
+    private val feedDatabase: Database
+) {
 
     fun getAllFeedUser(): PagingSource<Int, FeedUserEntity> = feedDao.getAllFeedUser()
 

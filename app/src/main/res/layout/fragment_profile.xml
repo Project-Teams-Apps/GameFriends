@@ -5,44 +5,61 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.profile.ProfileFragment"
-    android:background="@color/primaryColor">
+    android:background="@color/primaryColor"
+    android:fillViewport="true">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/backgrounds"/>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="340dp"
+    <ImageButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/baseline_format_list_bulleted_24"
+        android:background="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30dp">
+        android:layout_margin="14dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/backgrounds"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/placeholder"
+            tools:src="@drawable/placeholder"
             android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
             
             <TextView
                 android:id="@+id/usernameTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/username"
+                tools:text="@string/username"
+                android:textSize="24sp"
+                android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/white"/>
             
@@ -50,129 +67,30 @@
                 android:id="@+id/countryTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/indonesia"
+                tools:text="@string/indonesia"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_medium"/>
 
             <TextView
-                android:id="@+id/femaleTv"
+                android:id="@+id/genderTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/female"
+                tools:text="@string/female"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_medium"/>
-
-            <TextView
-                android:id="@+id/countFriendsTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/_0_friends"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins_medium"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/editProfileBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="@string/edit_profile"
-                android:backgroundTint="@color/secondaryColor"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/myPictureTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Picture"
-        app:layout_constraintStart_toStartOf="@id/linearLayout1"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout1"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_medium"
-        android:textSize="16sp"/>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        app:layout_constraintStart_toStartOf="@id/myPictureTv"
-        app:layout_constraintTop_toBottomOf="@id/myPictureTv"
-        app:layout_constraintEnd_toEndOf="@id/linearLayout1"
-        android:background="@drawable/rounded_background"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        >
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:flexWrap="wrap"
-            app:justifyContent="space_between"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="16dp"
-            >
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="16dp"
-                >
-
-                <ImageView
-                    android:id="@+id/imageView_0"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/placeholder"
-                    android:layout_gravity="center_vertical"
-                    android:scaleType="centerCrop" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="16dp"
-                >
-
-                <ImageView
-                    android:id="@+id/imageView_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/placeholder"
-                    android:layout_gravity="center_vertical"
-                    android:scaleType="centerCrop" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="16dp"
-                >
-
-                <ImageView
-                    android:id="@+id/imageView_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/placeholder"
-                    android:layout_gravity="center_vertical"
-                    android:scaleType="centerCrop" />
-
-            </androidx.cardview.widget.CardView>
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/bioTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
+        app:layout_constraintStart_toStartOf="@id/linearLayout1"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout1"
         android:text="@string/bio"
         android:textSize="16sp"
         android:textColor="@color/white"
@@ -180,29 +98,28 @@
         android:fontFamily="@font/poppins_medium"/>
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        app:layout_constraintStart_toStartOf="@id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="@id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@id/bioTv"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_background"
-        >
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintEnd_toEndOf="@id/linearLayout1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/linearLayout1"
+            app:layout_constraintTop_toBottomOf="@id/bioTv">
+
+            <TextView
+                android:id="@+id/bioUserTv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                tools:text="@string/mobile_legend"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/bioUserTv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/mobile_legend"
-            android:textColor="@color/white"
-            android:layout_margin="16dp"/>
-
-    </LinearLayout>
-
-
-    <TextView
         android:id="@+id/gamePlayedTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -215,8 +132,8 @@
         android:fontFamily="@font/poppins_medium"/>
 
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group_gameplayed"
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/gamePlayedFlexBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/linearLayout3"
@@ -224,23 +141,28 @@
         app:layout_constraintTop_toBottomOf="@id/gamePlayedTv"
         app:chipSpacing="8dp"
         android:padding="8dp"
-        android:orientation="horizontal"/>
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:showDivider="beginning|middle"
+        app:dividerDrawable="@drawable/divider_bg"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"/>
 
     <TextView
         android:id="@+id/hobbyTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/gamePlayedTv"
-        app:layout_constraintTop_toBottomOf="@id/chip_group_gameplayed"
-        android:text="@string/hobby"
+        app:layout_constraintTop_toBottomOf="@id/gamePlayedFlexBox"
+       android:text="@string/hobby"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:fontFamily="@font/poppins_medium"
         android:layout_marginTop="16dp"
         />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group_hobby"
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/hobbyFlexBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/linearLayout3"
@@ -248,9 +170,12 @@
         app:layout_constraintTop_toBottomOf="@id/hobbyTv"
         app:chipSpacing="8dp"
         android:padding="8dp"
-        android:orientation="horizontal"/>
-
-
+        app:flexWrap="wrap"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:showDivider="beginning|middle"
+        app:dividerDrawable="@drawable/divider_bg"
+        app:justifyContent="flex_start"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

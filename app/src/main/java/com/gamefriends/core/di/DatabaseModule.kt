@@ -24,8 +24,8 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "to
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    val passphrase: ByteArray = SQLiteDatabase.getBytes("evenxx".toCharArray())
-    val factory = SupportFactory(passphrase)
+//    val passphrase: ByteArray = SQLiteDatabase.getBytes("evenxx".toCharArray())
+//    val factory = SupportFactory(passphrase)
 
     @Singleton
     @Provides
@@ -35,7 +35,6 @@ object DatabaseModule {
         "feedUserDb"
     )
         .fallbackToDestructiveMigration()
-        .openHelperFactory(factory)
         .build()
 
     @Provides

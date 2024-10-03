@@ -1,21 +1,19 @@
 package com.gamefriends.core.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gamefriends.R
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
-import com.gamefriends.core.data.source.remote.response.ListItem
-import com.gamefriends.core.domain.model.FeedUser
 import com.gamefriends.databinding.FeedItemBinding
+import com.google.android.material.chip.Chip
 import com.qamar.curvedbottomnaviagtion.setMargins
+
+
 
 class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>(DIFF_CALLBACK) {
     var onItemCLick:((FeedUserEntity) -> Unit)? = null
@@ -30,17 +28,17 @@ class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>
                 usernameTv.text = data.name
                 locationText.text = data.location
                 genderTv.text = data.gender
-                bioTv.text = data.bio
 
                 flexboxGamePlayed.removeAllViews()
                 hobbyGamePlayed.removeAllViews()
 
                 data.gamePlayed.forEach { game->
-                    val chip = TextView(itemView.context).apply {
+                    val chip = Chip(itemView.context).apply {
                         text = game
-                        setPadding(16, 8, 16, 8)
-                        setMargins(3,0,3,0)
-                        setBackgroundResource(R.drawable.chip_background)
+                        setPadding(8,8,8,8)
+                        setMargins(8,8,8,8)
+                        isEnabled = false
+                        setChipBackgroundColorResource(R.color.secondaryColor)
                         setTextColor(ContextCompat.getColor(context, R.color.white))
                     }
 
@@ -48,10 +46,12 @@ class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>
                 }
 
                 data.hobby.forEach { hobby->
-                    val chip = TextView(itemView.context).apply {
+                    val chip = Chip(itemView.context).apply {
                         text = hobby
-                        setPadding(16, 8, 16, 8)
-                        setBackgroundResource(R.drawable.chip_background)
+                        setPadding(8,8,8,8)
+                        setMargins(8,8,8,8)
+                        isEnabled = false
+                        setChipBackgroundColorResource(R.color.secondaryColor)
                         setTextColor(ContextCompat.getColor(context, R.color.white))
                     }
 

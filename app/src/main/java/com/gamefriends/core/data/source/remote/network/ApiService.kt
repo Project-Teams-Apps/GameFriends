@@ -3,8 +3,10 @@ package com.gamefriends.core.data.source.remote.network
 import com.gamefriends.core.data.source.remote.DTO
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.GetProfileResponse
 import com.gamefriends.core.data.source.remote.response.ListResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
+import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import okhttp3.MultipartBody
@@ -35,6 +37,16 @@ interface ApiService {
         @Body verifyOtpRegisterBody: DTO.VerifyOtpRegisterBody
     ): VerifyRegisterResponse
 
+    @POST("auth/forgotpassword")
+    suspend fun forgotPassword(
+        @Body forgotPasswordBody: DTO.EmailBody
+    ): RegisterResponse
+
+    @POST("auth/changepassword")
+    suspend fun changePassword(
+        @Body changePasswordBody: DTO.ChangePasswordBody
+    ): RegisterResponse
+
     @GET("api/content")
     suspend fun getListContent(
         @Query("page") page: Int = 1,
@@ -47,6 +59,16 @@ interface ApiService {
         @Query("userRequestId") userRequestId: String,
         @Query("userAcceptId") userAcceptId: String
     ): AddFriendRequestResponse
+
+    @GET("/profile/user")
+    suspend fun getProfile(
+        @Query("userId") userId: String
+    ): GetProfileResponse
+
+    @POST("/auth/logout")
+    suspend fun logoutUser(
+        @Body logoutBody: DTO.LogoutBody
+    ): LogoutResponse
 
     @PATCH("profile/{id}")
     suspend fun gamePlayedBio(

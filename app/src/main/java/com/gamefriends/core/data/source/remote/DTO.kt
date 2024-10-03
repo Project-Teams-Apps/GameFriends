@@ -26,6 +26,21 @@ object DTO {
         var hobby: List<String>
     )
 
+    data class EmailBody(
+        var email: String
+    )
+
+    data class ChangePasswordBody(
+        var email: String,
+        var otp: String,
+        var password: String
+    )
+
+    data class LogoutBody(
+        var userID: String,
+        var email: String
+    )
+
     data class UserIdBody(
         var userID: String
     )

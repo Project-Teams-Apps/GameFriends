@@ -1,6 +1,8 @@
 package com.gamefriends.ui.auth.otp
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,17 +42,33 @@ class OtpFragment : Fragment() {
     }
 
     private fun otpAuth() {
+        val otpEditText = listOf(
+            binding.otp1Edt,
+            binding.otp2Edt,
+            binding.otp3Edt,
+            binding.otp4Edt,
+            binding.otp5Edt
+        )
+
+        for (i in otpEditText.indices) {
+            otpEditText[i].addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s?.length == 1 && i < otpEditText.size - 1) {
+                        otpEditText[i + 1].requestFocus()
+                    } else if (s?.length == 0 && i > 0) {
+                        otpEditText[i - 1].requestFocus()
+                    }
+                }
+            })
+        }
+
         binding.sendOtpBtn.setOnClickListener {
             val email = data.email
-            val otpFields = listOf(
-                binding.otp1Edt.text.toString(),
-                binding.otp2Edt.text.toString(),
-                binding.otp3Edt.text.toString(),
-                binding.otp4Edt.text.toString(),
-                binding.otp5Edt.text.toString()
-            )
-
-            val otp = otpFields.joinToString("")
+            val otp = otpEditText.joinToString("") { it.text.toString() }
 
             if (email.isEmpty() || otp.isEmpty()) {
                 Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
@@ -68,4 +86,5 @@ class OtpFragment : Fragment() {
             }
         }
     }
+
 }
