@@ -108,7 +108,8 @@
             app:placeholderTextColor="@color/black"
             app:counterTextColor="@color/black"
             app:prefixTextColor="@color/black"
-            app:hintTextColor="@color/black"
+            app:hintTextColor="@color/transparent"
+            app:hintEnabled="false"
             app:boxStrokeErrorColor="@color/red">
 
             <EditText
@@ -118,7 +119,7 @@
                 android:layout_height="match_parent"
                 android:drawableStart="@drawable/baseline_email_24"
                 android:drawablePadding="10dp"
-                android:hint="@string/games_gmail_com"
+                android:hint="Your @Gmail.com"
                 android:autofillHints="emailAddress"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
@@ -153,7 +154,8 @@
             app:placeholderTextColor="@color/black"
             app:counterTextColor="@color/black"
             app:prefixTextColor="@color/black"
-            app:hintTextColor="@color/black"
+            app:hintTextColor="@color/transparent"
+            app:hintEnabled="false"
             app:boxStrokeErrorColor="@color/red">
 
             <EditText
@@ -199,10 +201,10 @@
             app:placeholderTextColor="@color/black"
             app:counterTextColor="@color/black"
             app:prefixTextColor="@color/black"
-            app:hintTextColor="@color/black"
+            app:hintTextColor="@color/transparent"
             app:boxStrokeErrorColor="@color/red"
             app:hintAnimationEnabled="false"
-            android:hint="">
+            app:hintEnabled="false">
 
             <EditText
                 android:id="@+id/passwordRegisterEdt"

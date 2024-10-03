@@ -39,7 +39,7 @@ class HobbyFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHobbyBinding.inflate(inflater)
         return binding.root
@@ -70,7 +70,8 @@ class HobbyFragment : Fragment() {
             binding.photoGraphyBtn,
             binding.shoppingBtn,
             binding.travelingtn,
-            binding.runningBtn
+            binding.runningBtn,
+            binding.swimmingBtn
         )
 
         buttons.forEach {button ->

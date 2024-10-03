@@ -11,12 +11,16 @@ import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.network.ApiService
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.GetProfileResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
+import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.paging.ContentPagingSource
+import com.qamar.curvedbottomnaviagtion.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import okhttp3.MediaType.Companion.toMediaType
@@ -80,6 +84,41 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             }
         }.flowOn(Dispatchers.IO)
 
+    suspend fun forgotPassword(email: String): Flow<ApiResponse<RegisterResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.EmailBody(email)
+                val response = apiService.forgotPassword(requestBody)
+
+                if (response.data?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+
+    suspend fun changePassword(email: String, otp: String, password: String): Flow<ApiResponse<RegisterResponse>> =
+        flow {
+            try {
+                val requestBody = DTO.ChangePasswordBody(email, otp, password)
+                val response = apiService.changePassword(requestBody)
+
+                if (response.data?.isNotEmpty() == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+
+
     @OptIn(ExperimentalPagingApi::class)
     fun getListContentFeed(localDataSources: LocalDataSources, userId: String): Flow<PagingData<FeedUserEntity>> {
         return Pager(
@@ -94,6 +133,35 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
         ).flow
     }
 
+    fun getProfile(userId: String): Flow<ApiResponse<GetProfileResponse>> = flow {
+        try {
+            val response = apiService.getProfile(userId)
+
+            if (response.data?.name?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    fun logoutUser(userId: String, email: String): Flow<ApiResponse<LogoutResponse>> = flow {
+        try {
+            val requestBody = DTO.LogoutBody(userId, email)
+            val response = apiService.logoutUser(requestBody)
+
+            if (response.data?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }.flowOn(Dispatchers.IO)
+
     fun addFriendRequest(userRequestId: String, userAcceptId: String):Flow<ApiResponse<AddFriendRequestResponse>> = flow {
         try {
             val response = apiService.addFriendRequest(userRequestId, userAcceptId)
@@ -107,6 +175,8 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             emit(ApiResponse.Error(e.toString()))
         }
     }
+
+
 
     suspend fun gamePlayedBio(userId: String, gamePlayedString: List<String>): Flow<ApiResponse<BioResponse>> =
         flow {
