@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyApplication"
@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GameFriends"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.setting.SendFeedbackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.setting.languange.LanguageActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.setting.account.AccountActivity"
             android:exported="false" />

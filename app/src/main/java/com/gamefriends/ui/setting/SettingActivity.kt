@@ -41,12 +41,12 @@ class SettingActivity : AppCompatActivity() {
         logout()
         accountBtn()
         editProfile()
+        sendFeedBack()
     }
 
     private fun setupBackButton(){
         binding.backButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 
@@ -68,6 +68,13 @@ class SettingActivity : AppCompatActivity() {
             val moveDataWithIntent = Intent(this, AuthenticationActivity::class.java)
             moveDataWithIntent.putExtra(AuthenticationActivity.EXTRA_ISFROMEDITPROFILE, "TRUE")
             startActivity(moveDataWithIntent)
+        }
+    }
+
+    private fun sendFeedBack() {
+        binding.sendFeedbackBtn.setOnClickListener {
+            val intent = Intent(this, SendFeedbackActivity::class.java)
+            startActivity(intent)
         }
     }
 

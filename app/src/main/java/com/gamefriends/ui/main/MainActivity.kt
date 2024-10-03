@@ -42,9 +42,6 @@ class MainActivity : AppCompatActivity() {
     private fun initNavHost() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.containerFragment) as NavHostFragment
         navController = navHostFragment.navController
-
-
-
     }
 
     private fun ActivityMainBinding.setUpBottomNavigation() {
