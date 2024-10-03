@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-            android:text="Edit Profile"
+            android:text="@string/edit_profiles"
             android:textColor="@color/white"
             android:drawableLeft="@drawable/baseline_mode_edit_24"
             app:cornerRadius="24dp"

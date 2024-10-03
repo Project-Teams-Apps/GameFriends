@@ -40,6 +40,7 @@ class SettingActivity : AppCompatActivity() {
         setupBackButton()
         logout()
         accountBtn()
+        editProfile()
     }
 
     private fun setupBackButton(){
@@ -64,7 +65,9 @@ class SettingActivity : AppCompatActivity() {
 
     private fun editProfile() {
         binding.editProfileBtn.setOnClickListener {
-
+            val moveDataWithIntent = Intent(this, AuthenticationActivity::class.java)
+            moveDataWithIntent.putExtra(AuthenticationActivity.EXTRA_ISFROMEDITPROFILE, "TRUE")
+            startActivity(moveDataWithIntent)
         }
     }
 
