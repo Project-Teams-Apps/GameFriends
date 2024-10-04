@@ -92,6 +92,7 @@ class UserAdapter: PagingDataAdapter<FeedUserEntity ,UserAdapter.ListViewHolder>
         }
     }
 
+
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FeedUserEntity>() {
             override fun areItemsTheSame(oldItem:FeedUserEntity, newItem: FeedUserEntity): Boolean {

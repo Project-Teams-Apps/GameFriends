@@ -7,6 +7,17 @@
     android:background="@color/primaryColor"
     tools:context=".ui.main.notifcation.NotificationFragment">
 
+    <ProgressBar
+        android:id="@+id/progreesLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:indicatorColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <TextView
         android:id="@+id/notificationTv"
         android:layout_width="wrap_content"
@@ -39,6 +50,8 @@
         android:orientation="vertical"
         tools:listitem="@layout/notification_placeholder"
         />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

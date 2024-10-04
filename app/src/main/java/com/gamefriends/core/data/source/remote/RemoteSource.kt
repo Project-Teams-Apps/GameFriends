@@ -12,6 +12,8 @@ import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.network.ApiService
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.Data
+import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
@@ -146,7 +148,7 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
                 emit(ApiResponse.Empty)
             }
         } catch (e: Exception) {
-            emit(ApiResponse.Empty)
+            emit(ApiResponse.Error(e.toString()))
         }
     }.flowOn(Dispatchers.IO)
 

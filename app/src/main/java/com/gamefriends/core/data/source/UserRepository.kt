@@ -9,6 +9,7 @@ import com.gamefriends.core.data.source.remote.RemoteSource
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
@@ -246,10 +247,10 @@ class UserRepository @Inject constructor(
         }
     }
 
-    override fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
+    override fun addFriendRequest(userRequestId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
         emit(Resource.Loading())
 
-        val userRequestId = tokenPreferences.getToken().first().userId
+        val userAcceptId = tokenPreferences.getToken().first().userId
         remoteSource.addFriendRequest(userRequestId, userAcceptId).collect() {apiResponse ->
             when(apiResponse) {
                 ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
