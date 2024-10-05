@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColor"
-    tools:context=".ui.setting.feedback.SendFeedbackActivity">
+    tools:context=".ui.setting.reportbug.ReportAbugActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="Send Feedback"
+        android:text="Report A Bug"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -38,22 +38,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/backButton" />
 
-    <TextView
-        android:id="@+id/sendFeedBackTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send Your Feedback!"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/hobbyTv"
-        app:layout_constraintStart_toStartOf="@id/frameLayout1"
-        android:layout_marginTop="24dp"/>
-
     <FrameLayout
         android:id="@+id/frameLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sendFeedBackTv"
+        app:layout_constraintTop_toBottomOf="@id/hobbyTv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp">
@@ -108,12 +97,10 @@
         android:fontFamily="@font/poppins_medium"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="@string/next"
+        android:text="@string/send"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/frameLayout1"
         app:layout_constraintStart_toStartOf="@id/frameLayout1" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

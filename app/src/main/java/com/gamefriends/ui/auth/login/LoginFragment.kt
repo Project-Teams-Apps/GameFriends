@@ -63,13 +63,13 @@ class LoginFragment : Fragment() {
             loginViewModel.login(email, password).observe(viewLifecycleOwner) { data ->
                 when (data) {
                     is Resource.Error -> {
-                        binding.progreesLoading.visibility = View.GONE
+                        binding.progreesLoading.visibility = View.INVISIBLE
                     }
                     is Resource.Loading -> {
                         binding.progreesLoading.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
-                        binding.progreesLoading.visibility = View.GONE
+                        binding.progreesLoading.visibility = View.INVISIBLE
                         data.data?.let { token ->
                             it.findNavController().navigate(R.id.action_loginFragment_to_main_activity)
                         } ?: run {

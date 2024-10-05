@@ -43,9 +43,15 @@ class EmailPasswordFragment : Fragment() {
 
             viewModel.changePassword(email).observe(viewLifecycleOwner) {data->
                 when(data) {
-                    is Resource.Error -> Toast.makeText(context, "Error: ${data.message}", Toast.LENGTH_SHORT).show()
-                    is Resource.Loading ->  Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                    is Resource.Error -> {
+                        binding.progreesLoading.visibility = View.INVISIBLE
+                        binding.emailRegisterEdt.error = "Email is Not Registered"
+                    }
+                    is Resource.Loading ->  {
+                        binding.progreesLoading.visibility = View.VISIBLE
+                    }
                     is Resource.Success -> {
+                        binding.progreesLoading.visibility = View.INVISIBLE
                         val actions = EmailPasswordFragmentDirections.actionEmailPasswordFragmentToOtpForgotPasswordFragment(email)
                         it.findNavController().navigate(actions)
                     }

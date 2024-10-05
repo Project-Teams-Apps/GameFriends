@@ -1,4 +1,4 @@
-package com.gamefriends.ui.setting
+package com.gamefriends.ui.setting.feedback
 
 import android.os.Bundle
 import android.util.Log
@@ -7,11 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import com.gamefriends.R
 import com.gamefriends.databinding.ActivitySendFeedbackBinding
-import kotlinx.coroutines.launch
 
 class SendFeedbackActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySendFeedbackBinding

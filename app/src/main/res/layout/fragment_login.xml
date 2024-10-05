@@ -242,12 +242,12 @@
         app:layout_constraintTop_toBottomOf="@id/donthaveaccounttv"
         app:layout_constraintEnd_toEndOf="@id/signInBtn" />
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
+    <ProgressBar
         android:id="@+id/progreesLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        app:indicatorColor="@color/black"
+        app:indicatorColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

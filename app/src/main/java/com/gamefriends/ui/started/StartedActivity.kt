@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -31,9 +32,9 @@ class StartedActivity : AppCompatActivity() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-            Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT).show()
+            Log.d("TAG", "Message: Notification is Granted")
         } else {
-            Toast.makeText(this, "Notifications permission rejected", Toast.LENGTH_SHORT).show()
+            Log.d("TAG", "Message: Notification is Not Granted")
         }
     }
 

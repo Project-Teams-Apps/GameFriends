@@ -54,12 +54,18 @@ class ForgotPasswordFragment : Fragment() {
 
             viewModel.changePassword(email, otp, password).observe(viewLifecycleOwner) { resource ->
                 when (resource) {
-                    is Resource.Loading -> showToast("Loading...")
+                    is Resource.Loading -> {
+                        binding.progreesLoading.visibility = View.VISIBLE
+                    }
                     is Resource.Success -> {
+                        binding.progreesLoading.visibility = View.INVISIBLE
                         showToast("Password changed successfully!")
                         findNavController().navigate(R.id.action_changePasswordFragment_to_loginFragment)
                     }
-                    is Resource.Error -> showToast("Error: ${resource.message}")
+                    is Resource.Error -> {
+                        binding.progreesLoading.visibility = View.INVISIBLE
+                        showToast("Error")
+                    }
                 }
             }
         }
