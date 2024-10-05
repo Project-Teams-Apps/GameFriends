@@ -1,5 +1,6 @@
 package com.gamefriends.ui.started
 
+
 import android.Manifest
 import android.content.Intent
 import android.os.Build
@@ -37,7 +38,6 @@ class StartedActivity : AppCompatActivity() {
             Log.d("TAG", "Message: Notification is Not Granted")
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
