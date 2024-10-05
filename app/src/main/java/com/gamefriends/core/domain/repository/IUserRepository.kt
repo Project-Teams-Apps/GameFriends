@@ -5,6 +5,8 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.DataItem
+import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
@@ -39,11 +41,15 @@ interface IUserRepository {
 
     fun uploadProfileImage(file: File): Flow<Resource<BioResponse>>
 
+    fun fetchListRequestFriend(): Flow<Resource<ListNotificationResponse>>
+
     fun fetchListContent(): Flow<PagingData<FeedUserEntity>>
 
     fun getProfileUser(): Flow<Resource<ProfileUser>>
 
     fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>>
+
+    fun acceptFriendRequest(userRequestId: String): Flow<Resource<AddFriendRequestResponse>>
 
     suspend fun saveGamePlayedUser(gamePlayed: List<String>)
 

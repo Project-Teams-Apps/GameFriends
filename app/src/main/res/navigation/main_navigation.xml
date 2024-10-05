@@ -33,7 +33,11 @@
         android:id="@+id/notificationFragment"
         android:label="NotificationFragment"
         android:name="com.gamefriends.ui.main.notifcation.NotificationFragment"
-        tools:layout="@layout/fragment_notification"/>
+        tools:layout="@layout/fragment_notification">
+        <action
+            android:id="@+id/action_notificationFragment_to_listChatFragment"
+            app:destination="@id/listChatFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/listChatFragment"

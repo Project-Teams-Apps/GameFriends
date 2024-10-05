@@ -112,5 +112,8 @@ dependencies {
     implementation ("androidx.paging:paging-runtime-ktx:3.3.2")
     implementation (libs.androidx.paging.runtime)
 
+    implementation("androidx.work:work-runtime:2.8.1")
+    implementation("com.loopj.android:android-async-http:1.4.10")
+
     implementation("androidx.room:room-paging:2.6.1")
 }

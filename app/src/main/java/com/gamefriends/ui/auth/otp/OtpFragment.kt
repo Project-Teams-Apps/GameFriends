@@ -77,9 +77,16 @@ class OtpFragment : Fragment() {
 
             otpViewModel.verifyOtpRegister(email, otp).observe(viewLifecycleOwner) { data ->
                 when(data) {
-                    is Resource.Error -> Toast.makeText(context, "Error...", Toast.LENGTH_SHORT).show()
-                    is Resource.Loading -> Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                    is Resource.Error -> {
+                        Toast.makeText(context, "OTP CODE IS NOT VERIFY", Toast.LENGTH_SHORT).show()
+                        binding.progreesLoading.visibility = View.INVISIBLE
+                    }
+                    is Resource.Loading -> {
+                        Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                        binding.progreesLoading.visibility = View.VISIBLE
+                    }
                     is Resource.Success -> {
+                        binding.progreesLoading.visibility = View.INVISIBLE
                         it.findNavController().navigate(R.id.action_OtpFragment_to_gamePlayedFragment)
                     }
                 }
