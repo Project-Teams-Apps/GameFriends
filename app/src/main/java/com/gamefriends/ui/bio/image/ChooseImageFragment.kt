@@ -48,9 +48,7 @@ class ChooseImageFragment : Fragment() {
         }
 
         showImage()
-
         setupClickListener()
-
     }
 
 
@@ -94,9 +92,15 @@ class ChooseImageFragment : Fragment() {
                 if (image != null) {
                     viewModel.uploadProfileImage(image).observe(viewLifecycleOwner) {data->
                         when(data) {
-                            is Resource.Error -> Toast.makeText(requireContext(),"Error", Toast.LENGTH_SHORT).show()
-                            is Resource.Loading -> Toast.makeText(requireContext(),"Loading", Toast.LENGTH_SHORT).show()
+                            is Resource.Error -> {
+                                binding.progreesLoading.visibility = View.INVISIBLE
+                                Toast.makeText(requireContext(), "You Must upload a Photo", Toast.LENGTH_SHORT).show()
+                            }
+                            is Resource.Loading -> {
+                                binding.progreesLoading.visibility = View.VISIBLE
+                            }
                             is Resource.Success -> {
+                                binding.progreesLoading.visibility = View.INVISIBLE
                                 it.findNavController().navigate(R.id.main_activity)
                             }
                         }

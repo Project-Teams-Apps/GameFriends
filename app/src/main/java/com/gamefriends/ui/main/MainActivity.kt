@@ -2,7 +2,9 @@ package com.gamefriends.ui.main
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,10 +12,14 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.gamefriends.R
+import com.gamefriends.core.service.MyWorker
 import com.gamefriends.databinding.ActivityMainBinding
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -34,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
         initNavHost()
         binding.setUpBottomNavigation()
 
@@ -42,9 +49,6 @@ class MainActivity : AppCompatActivity() {
     private fun initNavHost() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.containerFragment) as NavHostFragment
         navController = navHostFragment.navController
-
-
-
     }
 
     private fun ActivityMainBinding.setUpBottomNavigation() {

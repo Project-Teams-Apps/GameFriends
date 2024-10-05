@@ -63,12 +63,14 @@ class RegisterFragment : Fragment() {
             registerViewModel.register(email, name, password).observe(viewLifecycleOwner) { data->
                 when (data) {
                     is Resource.Error -> {
-                        Toast.makeText(context, "Error: ${data.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Email and Password are wrong", Toast.LENGTH_SHORT).show()
+                        binding.progreesLoading.visibility = View.INVISIBLE
                     }
                     is Resource.Loading -> {
-                        Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                        binding.progreesLoading.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
+                        binding.progreesLoading.visibility = View.INVISIBLE
                         val action = RegisterFragmentDirections.actionRegisterFragmentToOtpFragment(email)
                         it.findNavController().navigate(action)
                     }

@@ -6,15 +6,15 @@
     <string name="login_to_your_account">Login to your account</string>
     <string name="don_t_have_account">Don\'t have account</string>
     <string name="sign_up">Sign Up</string>
-    <string name="games_gmail_com">Games@gmail.com</string>
+    <string name="games_gmail_com" translatable="false">Games@gmail.com</string>
     <string name="welcome_back">Welcome Back</string>
-    <string name="email">Email</string>
+    <string name="email" translatable="false">Email</string>
     <string name="name">Name</string>
     <string name="password">Password</string>
     <string name="create_your_account">Create Your Account</string>
-    <string name="password_hints">********</string>
+    <string name="password_hints" translatable="false">********</string>
     <string name="or">OR</string>
-    <string name="name_hints">John Doe</string>
+    <string name="name_hints" translatable="false">John Doe</string>
     <string name="enter_otp_code">Enter Otp Code</string>
     <string name="enter_5_otp_codes_that_have_been_received">Enter 5 OTP codes that have been received</string>
     <string name="you_didn_t_receive_the_code">You didn\'t receive the code?</string>
@@ -25,27 +25,27 @@
     <string name="get_started">Get Started</string>
     <string name="find_your_gaming_squad_and_take_your_friendships_to_the_next_level">find your gaming squad and take your friendships to the next level</string>
     <string name="uprade_your_gameplay_with_your_new_friends">UPRADE YOUR GAMEPLAY WITH YOUR NEW FRIENDS</string>
-    <string name="authorize_with_google">Authorize with Google</string>
+    <string name="authorize_with_google" translatable="false">Authorize with Google</string>
     <string name="game_played">Game Played</string>
     <string name="describe_yourself">Describe Yourself</string>
     <string name="what_s_game_you_play">What\'s Game you Play ?</string>
-    <string name="mobile_legend">Mobile Legend</string>
-    <string name="hok">HOK</string>
-    <string name="codm">CODM</string>
-    <string name="pubg_mobile">PUBG Mobile</string>
-    <string name="valorant">Valorant</string>
-    <string name="chess">Chess</string>
-    <string name="csgo">CSGO</string>
-    <string name="fortnite">Fortnite</string>
-    <string name="apex_legends">Apex Legends</string>
-    <string name="dota_2">Dota 2</string>
-    <string name="league_of_legends">League Of Legends</string>
-    <string name="genshin_impact">Genshin Impact</string>
+    <string name="mobile_legend" translatable="false">Mobile Legend</string>
+    <string name="hok" translatable="false">HOK</string>
+    <string name="codm" translatable="false">CODM</string>
+    <string name="pubg_mobile" translatable="false">PUBG Mobile</string>
+    <string name="valorant" translatable="false">Valorant</string>
+    <string name="chess" translatable="false">Chess</string>
+    <string name="csgo" translatable="false">CSGO</string>
+    <string name="fortnite" translatable="false">Fortnite</string>
+    <string name="apex_legends" translatable="false">Apex Legends</string>
+    <string name="dota_2" translatable="false">Dota 2</string>
+    <string name="league_of_legends" translatable="false">League Of Legends</string>
+    <string name="genshin_impact" translatable="false">Genshin Impact</string>
     <string name="hobby">Hobby</string>
-    <string name="karaoke">Karaoke</string>
-    <string name="football">Football</string>
-    <string name="futsal">Futsal</string>
-    <string name="photography">Photography</string>
+    <string name="karaoke" translatable="false">Karaoke</string>
+    <string name="football" translatable="false">Football</string>
+    <string name="futsal" translatable="false">Futsal</string>
+    <string name="photography" translatable="false">Photography</string>
     <string name="what_s_your_hobby">What\'s Your Hobby ?</string>
     <string name="swimming">Swimming</string>
     <string name="running">Running</string>
@@ -56,16 +56,16 @@
     <string name="cook">Cook</string>
     <string name="what_s_your_gender">What\'s Your Gender ?</string>
     <string name="level_up_your_friendship">LEVEL UP YOUR FRIENDSHIP</string>
-    <string name="connect_with_gamers_chat_play_repeat">CONNECT WITH GAMERS, CHAT, PLAY, REPEAT</string>
+    <string name="connect_with_gamers_chat_play_repeat" translatable="false">CONNECT WITH GAMERS, CHAT, PLAY, REPEAT</string>
     <string name="your_location">Your Location ?</string>
     <string name="input_picture">Input Picture</string>
-    <string name="enter_3_your_picture">Enter 3 Your Picture ?</string>
+    <string name="enter_3_your_picture" translatable="false">Enter 3 Your Picture ?</string>
     <string name="finish">Finish</string>
     <string name="add_friend_button">Add Friend Button</string>
     <string name="username">Username</string>
-    <string name="indonesia">Indonesia</string>
+    <string name="indonesia" translatable="false">Indonesia</string>
     <string name="female">Female</string>
-    <string name="_0_friends">0 Friends</string>
+    <string name="_0_friends" translatable="false">0 Friends</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="bio">Bio</string>
     <string name="notification">Notification</string>
@@ -92,11 +92,11 @@
         <item>Male</item>
     </string-array>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
+    <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
         dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
@@ -140,4 +140,5 @@
     <string name="report_a_bug">Report a Bug</string>
     <string name="send_feedback">Send Feedback</string>
     <string name="edit_profiles">Edit Profile</string>
+    <string name="send">Send</string>
 </resources>

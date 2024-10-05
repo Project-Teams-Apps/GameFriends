@@ -1,6 +1,7 @@
 package com.gamefriends.core.data.source.remote
 
 
+import androidx.datastore.preferences.protobuf.Api
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -11,7 +12,10 @@ import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.network.ApiService
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.Data
+import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
+import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
@@ -133,6 +137,21 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
         ).flow
     }
 
+    // Get List Request Friend To User
+    fun getListRequestFriend(userId: String): Flow<ApiResponse<ListNotificationResponse>> = flow {
+        try {
+            val response = apiService.listRequestFriend(userId)
+
+            if (response.data?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }.flowOn(Dispatchers.IO)
+
     fun getProfile(userId: String): Flow<ApiResponse<GetProfileResponse>> = flow {
         try {
             val response = apiService.getProfile(userId)
@@ -176,7 +195,19 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
         }
     }
 
+    fun acceptFriendRequest(userRequestId: String, userAcceptId: String): Flow<ApiResponse<AddFriendRequestResponse>> = flow {
+        try {
+            val response = apiService.acceptFriendRequest(userRequestId, userAcceptId)
 
+            if (response.data?.userRequestId?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }.flowOn(Dispatchers.IO)
 
     suspend fun gamePlayedBio(userId: String, gamePlayedString: List<String>): Flow<ApiResponse<BioResponse>> =
         flow {

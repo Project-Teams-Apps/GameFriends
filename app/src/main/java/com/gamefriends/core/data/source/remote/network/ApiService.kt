@@ -3,7 +3,9 @@ package com.gamefriends.core.data.source.remote.network
 import com.gamefriends.core.data.source.remote.DTO
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
+import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.ListResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
@@ -54,8 +56,22 @@ interface ApiService {
         @Query("userId") userId: String
     ): ListResponse
 
+    // List Request Friend To User
+    @GET("/api/content/request/friend")
+    suspend fun listRequestFriend(
+        @Query("userId") userId: String
+    ): ListNotificationResponse
+
+    // add request to add friend
     @POST("/api/content/friend/request")
     suspend fun addFriendRequest(
+        @Query("userRequestId") userRequestId: String,
+        @Query("userAcceptId") userAcceptId: String
+    ): AddFriendRequestResponse
+
+    // accept a friend Request
+    @POST("/api/content/friend/accept")
+    suspend fun acceptFriendRequest(
         @Query("userRequestId") userRequestId: String,
         @Query("userAcceptId") userAcceptId: String
     ): AddFriendRequestResponse

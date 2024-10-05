@@ -1,4 +1,4 @@
-package com.gamefriends.ui.main.profile
+package com.gamefriends.ui.setting.account
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel() {
+class AccountViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel(){
     fun getProfileUser() = userUseCase.profileUseCase().asLiveData()
 
     val getProfileData = userUseCase.getProfileDataStore().asLiveData()
