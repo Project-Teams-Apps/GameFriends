@@ -137,7 +137,6 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
         ).flow
     }
 
-
     // Get List Request Friend To User
     fun getListRequestFriend(userId: String): Flow<ApiResponse<ListNotificationResponse>> = flow {
         try {
@@ -196,11 +195,9 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
         }
     }
 
-
     fun acceptFriendRequest(userRequestId: String, userAcceptId: String): Flow<ApiResponse<AddFriendRequestResponse>> = flow {
         try {
             val response = apiService.acceptFriendRequest(userRequestId, userAcceptId)
-
             if (response.data?.userRequestId?.isNotEmpty() == true) {
                 emit(ApiResponse.Success(response))
             } else {
@@ -324,6 +321,38 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
                 emit(ApiResponse.Empty)
             }
         } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
+
+    suspend fun sendFeedbackUser(email: String, feedbackReport: String): Flow<ApiResponse<RegisterResponse>> = flow {
+        try {
+            val requestBody = DTO.feedbackUserbody(email, feedbackReport)
+
+            val response = apiService.sendFeedbackuser(requestBody)
+
+            if (response.data?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
+
+    suspend fun sendReportBug(email: String, bugReport: String): Flow<ApiResponse<RegisterResponse>> = flow {
+        try {
+            val requestBody = DTO.reportBugBody(email, bugReport)
+
+            val response = apiService.sendReportBug(requestBody)
+
+            if (response.data?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        }catch (e: Exception) {
             emit(ApiResponse.Error(e.toString()))
         }
     }

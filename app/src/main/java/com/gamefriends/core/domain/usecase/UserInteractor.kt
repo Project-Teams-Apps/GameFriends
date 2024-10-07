@@ -136,4 +136,12 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         return userRepository.editBioUser(bio, gender, gamePlayed, location, hobby)
     }
 
+    override fun sendFeedbackUser(feedback: String): Flow<Resource<RegisterResponse>> {
+        return userRepository.sendFeedbackUser(feedback)
+    }
+
+    override fun sendReportABug(bugReport: String): Flow<Resource<RegisterResponse>> {
+        return userRepository.sendReportABug(bugReport)
+    }
+
 }

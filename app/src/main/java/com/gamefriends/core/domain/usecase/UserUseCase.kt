@@ -73,4 +73,8 @@ interface UserUseCase {
     suspend fun saveBioUser(bio: String)
 
     fun editBioUser(bio: String, gender: String, gamePlayed: List<String>, location: String, hobby: List<String>): Flow<Resource<BioResponse>>
+
+    fun sendFeedbackUser(feedback: String): Flow<Resource<RegisterResponse>>
+
+    fun sendReportABug(bugReport: String): Flow<Resource<RegisterResponse>>
 }

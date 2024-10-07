@@ -19,8 +19,6 @@ import com.gamefriends.ui.auth.AuthenticationActivity
 import com.gamefriends.ui.setting.account.AccountActivity
 import com.gamefriends.ui.setting.feedback.SendFeedbackActivity
 import com.gamefriends.ui.setting.reportbug.ReportAbugActivity
-import com.gamefriends.ui.main.MainActivity
-import com.gamefriends.ui.setting.account.AccountActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

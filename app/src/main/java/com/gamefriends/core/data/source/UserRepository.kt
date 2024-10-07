@@ -248,11 +248,9 @@ class UserRepository @Inject constructor(
         }
     }
 
-    override fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
+    override fun addFriendRequest(userRequestId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
         emit(Resource.Loading())
-
         val userId = tokenPreferences.getToken().first().userId
-
         remoteSource.getProfile(userId).collect() { apiResponse ->
             when(apiResponse) {
                 ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
@@ -275,21 +273,25 @@ class UserRepository @Inject constructor(
         }
     }
 
-    override fun addFriendRequest(userRequestId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
+   
+    override fun acceptFriendRequest(
+        userRequestId: String
+    ): Flow<Resource<AddFriendRequestResponse>> = flow {
         emit(Resource.Loading())
 
         val userAcceptId = tokenPreferences.getToken().first().userId
-        remoteSource.addFriendRequest(userRequestId, userAcceptId).collect() {apiResponse ->
-            when(apiResponse) {
+        remoteSource.acceptFriendRequest(userRequestId, userAcceptId).collect() {apiResponese ->
+            when(apiResponese) {
                 ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
-                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponese.errorMessage))
                 is ApiResponse.Success -> {
-                    val response = apiResponse.data
+                    val response  = apiResponese.data
                     emit(Resource.Success(response))
                 }
             }
         }
     }
+
     override fun acceptFriendRequest(
         userRequestId: String
     ): Flow<Resource<AddFriendRequestResponse>> = flow {
@@ -410,6 +412,38 @@ class UserRepository @Inject constructor(
                 }
             }
 
+        }
+    }
+
+    override fun sendFeedbackUser(feedback: String): Flow<Resource<RegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        val email = tokenPreferences.getProfileUser().first().email
+        remoteSource.sendFeedbackUser(email, feedback).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun sendReportABug(bugReport: String): Flow<Resource<RegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        val email = tokenPreferences.getProfileUser().first().email
+        remoteSource.sendReportBug(email, bugReport).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
         }
     }
 

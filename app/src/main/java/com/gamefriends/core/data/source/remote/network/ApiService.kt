@@ -129,4 +129,13 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): BioResponse
 
+    @POST("/setting/feedback")
+    suspend fun sendFeedbackuser(
+        @Body feedbackUserbody: DTO.feedbackUserbody
+    ): RegisterResponse
+
+    @POST("/setting/reportbug")
+    suspend fun sendReportBug(
+        @Body reportBugBody: DTO.reportBugBody
+    ): RegisterResponse
 }
