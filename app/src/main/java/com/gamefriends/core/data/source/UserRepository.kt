@@ -221,6 +221,7 @@ class UserRepository @Inject constructor(
     }
 
     override fun getProfileUser(): Flow<Resource<ProfileUser>> = flow {
+
         emit(Resource.Loading())
 
         val userId = tokenPreferences.getToken().first().userId
@@ -249,14 +250,42 @@ class UserRepository @Inject constructor(
 
     override fun addFriendRequest(userRequestId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
         emit(Resource.Loading())
-
-        val userAcceptId = tokenPreferences.getToken().first().userId
-        remoteSource.addFriendRequest(userRequestId, userAcceptId).collect() {apiResponse ->
+        val userId = tokenPreferences.getToken().first().userId
+        remoteSource.getProfile(userId).collect() { apiResponse ->
             when(apiResponse) {
                 ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
                 is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
                 is ApiResponse.Success -> {
-                    val response = apiResponse.data
+                    val data = apiResponse.data.data
+                    val name = data?.name ?: ""
+                    val email = data?.email ?: ""
+                    val bio = data?.bioUser?.bio ?: ""
+                    val gender = data?.bioUser?.gender ?: ""
+                    val gamePlayed = data?.bioUser?.gamePlayed as List<String>
+                    val hobby = data.bioUser.hobby as List<String>
+                    val location = data.bioUser.location ?: ""
+                    val profilePictureUrl = data.bioUser.profilePicureUrl ?: ""
+                    val profileUser = ProfileUser(userId, name, email, bio, gender, gamePlayed, hobby, location, profilePictureUrl)
+                    tokenPreferences.saveProfileUser(profileUser)
+                    emit(Resource.Success(profileUser))
+                }
+            }
+        }
+    }
+
+   
+    override fun acceptFriendRequest(
+        userRequestId: String
+    ): Flow<Resource<AddFriendRequestResponse>> = flow {
+        emit(Resource.Loading())
+
+        val userAcceptId = tokenPreferences.getToken().first().userId
+        remoteSource.acceptFriendRequest(userRequestId, userAcceptId).collect() {apiResponese ->
+            when(apiResponese) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponese.errorMessage))
+                is ApiResponse.Success -> {
+                    val response  = apiResponese.data
                     emit(Resource.Success(response))
                 }
             }

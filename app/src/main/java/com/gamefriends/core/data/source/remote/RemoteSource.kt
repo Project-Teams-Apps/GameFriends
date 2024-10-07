@@ -151,7 +151,7 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             emit(ApiResponse.Error(e.toString()))
         }
     }.flowOn(Dispatchers.IO)
-
+    
     fun getProfile(userId: String): Flow<ApiResponse<GetProfileResponse>> = flow {
         try {
             val response = apiService.getProfile(userId)
@@ -198,7 +198,6 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
     fun acceptFriendRequest(userRequestId: String, userAcceptId: String): Flow<ApiResponse<AddFriendRequestResponse>> = flow {
         try {
             val response = apiService.acceptFriendRequest(userRequestId, userAcceptId)
-
             if (response.data?.userRequestId?.isNotEmpty() == true) {
                 emit(ApiResponse.Success(response))
             } else {

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.gamefriends.R
+
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.databinding.ActivityReportAbugBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +30,9 @@ class ReportAbugActivity : AppCompatActivity(), View.OnClickListener {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         binding.continueBtn.setOnClickListener(this)
+
         setupBackButton()
     }
 
@@ -61,5 +64,4 @@ class ReportAbugActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
 }
