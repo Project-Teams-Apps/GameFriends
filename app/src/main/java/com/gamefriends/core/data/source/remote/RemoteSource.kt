@@ -325,4 +325,36 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             emit(ApiResponse.Error(e.toString()))
         }
     }
+
+    suspend fun sendFeedbackUser(email: String, feedbackReport: String): Flow<ApiResponse<RegisterResponse>> = flow {
+        try {
+            val requestBody = DTO.feedbackUserbody(email, feedbackReport)
+
+            val response = apiService.sendFeedbackuser(requestBody)
+
+            if (response.data?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
+
+    suspend fun sendReportBug(email: String, bugReport: String): Flow<ApiResponse<RegisterResponse>> = flow {
+        try {
+            val requestBody = DTO.reportBugBody(email, bugReport)
+
+            val response = apiService.sendReportBug(requestBody)
+
+            if (response.data?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        }catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
 }

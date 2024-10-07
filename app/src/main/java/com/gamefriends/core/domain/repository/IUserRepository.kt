@@ -70,4 +70,8 @@ interface IUserRepository {
     fun bioUser(bio: String): Flow<Resource<BioResponse>>
 
     fun locationUser(location: String): Flow<Resource<BioResponse>>
+
+    fun sendFeedbackUser(feedback: String): Flow<Resource<RegisterResponse>>
+
+    fun sendReportABug(bugReport: String): Flow<Resource<RegisterResponse>>
 }

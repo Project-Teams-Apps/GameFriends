@@ -2,16 +2,23 @@ package com.gamefriends.ui.setting.feedback
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.gamefriends.R
+import com.gamefriends.core.data.source.Resource
 import com.gamefriends.databinding.ActivitySendFeedbackBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class SendFeedbackActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class SendFeedbackActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivitySendFeedbackBinding
+
+    private val viewModel: SendFeedbackViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,28 +31,36 @@ class SendFeedbackActivity : AppCompatActivity() {
             insets
         }
 
-        sendFeedBackSetup()
+        binding.continueBtn.setOnClickListener(this)
         setupBackButton()
-    }
-
-    private fun sendFeedBackSetup() {
-        binding.continueBtn.setOnClickListener {
-
-            val bio = binding.sendFeedBackEdt.text.toString()
-
-            if (bio.length < 5 ) {
-                Toast.makeText(this, "Bio At Least minimum 5 words", Toast.LENGTH_SHORT).show()
-            } else if (bio.length > 100) {
-                Toast.makeText(this, "Bio Maximum is 100 words", Toast.LENGTH_SHORT).show()
-            } else {
-                Log.d("TAG", "sendFeedBackSetup: successfull")
-            }
-        }
     }
 
     private fun setupBackButton(){
         binding.backButton.setOnClickListener {
             finish()
+        }
+    }
+
+    override fun onClick(p0: View?) {
+        when(p0?.id) {
+            R.id.continueBtn -> {
+                val feedback = binding.sendFeedBackEdt.text.toString()
+                viewModel.sendFeedback(feedback).observe(this) {apiResponse ->
+                    when(apiResponse) {
+                        is Resource.Error -> {
+                            Toast.makeText(this, "Feedback is Failed", Toast.LENGTH_SHORT).show()
+                        }
+                        is Resource.Loading -> {
+                            binding.progreesLoading.visibility = View.VISIBLE
+                        }
+                        is Resource.Success -> {
+                            binding.progreesLoading.visibility = View.INVISIBLE
+                            binding.sendFeedBackEdt.text.clear()
+                            Toast.makeText(this, "Send Feedback Successfull", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
         }
     }
 }

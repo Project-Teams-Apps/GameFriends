@@ -386,5 +386,37 @@ class UserRepository @Inject constructor(
         }
     }
 
+    override fun sendFeedbackUser(feedback: String): Flow<Resource<RegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        val email = tokenPreferences.getProfileUser().first().email
+        remoteSource.sendFeedbackUser(email, feedback).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun sendReportABug(bugReport: String): Flow<Resource<RegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        val email = tokenPreferences.getProfileUser().first().email
+        remoteSource.sendReportBug(email, bugReport).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
 
 }

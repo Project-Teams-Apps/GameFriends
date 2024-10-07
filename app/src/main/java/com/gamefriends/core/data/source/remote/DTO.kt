@@ -26,6 +26,16 @@ object DTO {
         var hobby: List<String>
     )
 
+    data class feedbackUserbody(
+        var email: String,
+        var feedbackReport: String
+    )
+
+    data class reportBugBody(
+        var email: String,
+        var bugReport: String
+    )
+
     data class EmailBody(
         var email: String
     )
