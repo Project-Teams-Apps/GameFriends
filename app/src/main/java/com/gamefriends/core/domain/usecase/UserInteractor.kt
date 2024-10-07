@@ -7,6 +7,7 @@ import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
+import com.gamefriends.core.data.source.remote.response.ListChatUserResposnse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
@@ -71,6 +72,11 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
     override fun fetchListContent(): Flow<PagingData<FeedUserEntity>> {
         return userRepository.fetchListContent()
     }
+
+    override fun fetchListChat(): Flow<Resource<ListChatUserResposnse>> {
+        return userRepository.fetchListChat()
+    }
+
 
     override fun profileUseCase(): Flow<Resource<ProfileUser>> {
         return userRepository.getProfileUser()

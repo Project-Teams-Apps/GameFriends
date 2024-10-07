@@ -15,6 +15,7 @@ import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.Data
 import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
+import com.gamefriends.core.data.source.remote.response.ListChatUserResposnse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
@@ -325,6 +326,21 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             emit(ApiResponse.Error(e.toString()))
         }
     }
+
+
+    suspend fun listChatUser(userId: String): Flow<ApiResponse<ListChatUserResposnse>> = flow {
+        try {
+            val requestBody = DTO.UserIdBody(userId)
+            val response = apiService.getListChatUser(requestBody)
+            if (response.data?.listUserChat?.getListMessage?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }.flowOn(Dispatchers.IO)
 
     suspend fun sendFeedbackUser(email: String, feedbackReport: String): Flow<ApiResponse<RegisterResponse>> = flow {
         try {

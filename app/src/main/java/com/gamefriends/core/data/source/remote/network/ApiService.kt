@@ -5,6 +5,7 @@ import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
+import com.gamefriends.core.data.source.remote.response.ListChatUserResposnse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.ListResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
@@ -128,6 +129,11 @@ interface ApiService {
         @Path("id") id: String,
         @Part file: MultipartBody.Part
     ): BioResponse
+
+    @GET("/chat/chats")
+    suspend fun getListChatUser(
+        @Body userIdBody: DTO.UserIdBody
+    ): ListChatUserResposnse
 
     @POST("/setting/feedback")
     suspend fun sendFeedbackuser(

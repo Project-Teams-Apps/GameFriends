@@ -1,7 +1,7 @@
 package com.gamefriends.core.data.source
 
+import android.os.Message
 import androidx.paging.PagingData
-
 import com.gamefriends.core.data.source.local.LocalDataSources
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.preferences.TokenPreferences
@@ -10,10 +10,12 @@ import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
+import com.gamefriends.core.data.source.remote.response.ListChatUserResposnse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.domain.model.BioUser
+import com.gamefriends.core.domain.model.ListChatUser
 import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.core.domain.model.Token
 import com.gamefriends.core.domain.repository.IUserRepository
@@ -204,6 +206,22 @@ class UserRepository @Inject constructor(
         remoteSource.getListRequestFriend(userId).collect() {apiResponse ->
             when(apiResponse) {
                 ApiResponse.Empty ->  emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun fetchListChat(): Flow<Resource<ListChatUserResposnse>> = flow {
+        emit(Resource.Loading())
+
+        val userId = tokenPreferences.getToken().first().userId
+        remoteSource.listChatUser(userId).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
                 is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
                 is ApiResponse.Success -> {
                     val response = apiResponse.data

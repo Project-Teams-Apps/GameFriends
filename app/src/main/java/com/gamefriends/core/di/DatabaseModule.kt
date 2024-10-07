@@ -7,6 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
 import com.gamefriends.core.data.source.local.room.Database
 import com.gamefriends.core.data.source.local.room.dao.FeedDao
+import com.gamefriends.core.data.source.local.room.dao.MessageDao
 import com.gamefriends.core.data.source.local.room.dao.RemoteDao
 import com.gamefriends.core.data.source.preferences.TokenPreferences
 import dagger.Module
@@ -42,6 +43,9 @@ object DatabaseModule {
 
     @Provides
     fun providesRemoteDao(database: Database): RemoteDao = database.remoteDao()
+
+    @Provides
+    fun provideMessageDao(database: Database): MessageDao = database.messageDao()
 
 
     @Provides

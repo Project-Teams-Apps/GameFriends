@@ -20,7 +20,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String" , "BASE_URL" , "\"https://game-friends-one.vercel.app/\"")
+        buildConfigField("String" , "BASE_URL" , "\"https://game-friends-production.up.railway.app/\"")
+        buildConfigField("String", "supabaseUrl", "\"https://cmxkoqoqoahijisnuscz.supabase.co\"")
+        buildConfigField("String", "supabaseAnonKey", "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNteGtvcW9xb2FoaWppc251c2N6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY4NjM4MjEsImV4cCI6MjAzMjQzOTgyMX0.3CfWaC5G2vgg_iJJqAsWMInvKon5O9kGrV2v3mCSob0\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -116,4 +118,9 @@ dependencies {
     implementation("com.loopj.android:android-async-http:1.4.10")
 
     implementation("androidx.room:room-paging:2.6.1")
+
+    implementation("io.github.jan-tennert.supabase:supabase-kt:3.0.0")
+    implementation("io.github.jan-tennert.supabase:realtime-kt-jvm:3.0.0")
+
+
 }

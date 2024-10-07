@@ -1,16 +1,19 @@
 package com.gamefriends.core.domain.repository
 
+import android.os.Message
 import androidx.paging.PagingData
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
+import com.gamefriends.core.data.source.remote.response.ListChatUserResposnse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
 import com.gamefriends.core.data.source.remote.response.VerifyRegisterResponse
 import com.gamefriends.core.domain.model.BioUser
+import com.gamefriends.core.domain.model.ListChatUser
 import com.gamefriends.core.domain.model.ProfileUser
 import com.gamefriends.core.domain.model.Token
 import kotlinx.coroutines.flow.Flow
@@ -42,6 +45,8 @@ interface IUserRepository {
     fun uploadProfileImage(file: File): Flow<Resource<BioResponse>>
 
     fun fetchListRequestFriend(): Flow<Resource<ListNotificationResponse>>
+
+    fun fetchListChat(): Flow<Resource<ListChatUserResposnse>>
 
     fun fetchListContent(): Flow<PagingData<FeedUserEntity>>
 

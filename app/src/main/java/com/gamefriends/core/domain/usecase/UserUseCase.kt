@@ -7,6 +7,7 @@ import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
+import com.gamefriends.core.data.source.remote.response.ListChatUserResposnse
 import com.gamefriends.core.data.source.remote.response.ListItem
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
@@ -43,6 +44,8 @@ interface UserUseCase {
     fun fetchListRequestFriend(): Flow<Resource<ListNotificationResponse>>
 
     fun fetchListContent(): Flow<PagingData<FeedUserEntity>>
+
+    fun fetchListChat():Flow<Resource<ListChatUserResposnse>>
 
     fun profileUseCase(): Flow<Resource<ProfileUser>>
 

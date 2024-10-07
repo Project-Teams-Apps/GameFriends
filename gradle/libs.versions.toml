@@ -12,6 +12,7 @@ activity = "1.8.0"
 constraintlayout = "2.1.4"
 navigationFragmentKtx = "2.7.7"
 pagingRuntime = "3.3.2"
+supabaseKt = "latest_version"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,6 +27,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+supabase-kt = { module = "io.supabase:supabase-kt", version.ref = "supabaseKt" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
