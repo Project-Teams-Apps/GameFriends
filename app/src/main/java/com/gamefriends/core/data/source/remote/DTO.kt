@@ -41,6 +41,16 @@ object DTO {
         var email: String
     )
 
+    data class SendFeedbackBody(
+        var email: String,
+        var feedbackReport: String
+    )
+
+    data class SendBugReportBody(
+        var email: String,
+        var bugReport: String
+    )
+
     data class UserIdBody(
         var userID: String
     )

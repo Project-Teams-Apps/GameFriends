@@ -5,8 +5,10 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ChatHistoryResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
+import com.gamefriends.core.data.source.remote.response.ListChatResponse
 import com.gamefriends.core.data.source.remote.response.ListItem
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
@@ -44,6 +46,10 @@ interface UserUseCase {
 
     fun fetchListContent(): Flow<PagingData<FeedUserEntity>>
 
+    fun fetchListChatUser(): Flow<Resource<ListChatResponse>>
+
+    fun fetchMessageChatUser(toUserId: String): Flow<Resource<ChatHistoryResponse>>
+
     fun profileUseCase(): Flow<Resource<ProfileUser>>
 
     fun addFriendRequest(userAcceptId: String): Flow<Resource<AddFriendRequestResponse>>
@@ -73,4 +79,8 @@ interface UserUseCase {
     suspend fun saveBioUser(bio: String)
 
     fun editBioUser(bio: String, gender: String, gamePlayed: List<String>, location: String, hobby: List<String>): Flow<Resource<BioResponse>>
+
+    fun sendFeedback(feedbackReport: String):Flow<Resource<RegisterResponse>>
+
+    fun sendBugReport(bugReport: String): Flow<Resource<RegisterResponse>>
 }

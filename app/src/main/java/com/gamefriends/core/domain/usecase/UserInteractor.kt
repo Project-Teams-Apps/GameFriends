@@ -6,7 +6,9 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ChatHistoryResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
+import com.gamefriends.core.data.source.remote.response.ListChatResponse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
@@ -72,6 +74,14 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         return userRepository.fetchListContent()
     }
 
+    override fun fetchListChatUser(): Flow<Resource<ListChatResponse>> {
+        return userRepository.fetchListChatUser()
+    }
+
+    override fun fetchMessageChatUser(toUserId: String): Flow<Resource<ChatHistoryResponse>> {
+        return userRepository.fetchHistoryChatUser(toUserId)
+    }
+
     override fun profileUseCase(): Flow<Resource<ProfileUser>> {
         return userRepository.getProfileUser()
     }
@@ -134,6 +144,14 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
         hobby: List<String>,
     ): Flow<Resource<BioResponse>> {
         return userRepository.editBioUser(bio, gender, gamePlayed, location, hobby)
+    }
+
+    override fun sendFeedback(feedbackReport: String): Flow<Resource<RegisterResponse>> {
+        return userRepository.sendFeedback(feedbackReport)
+    }
+
+    override fun sendBugReport(bugReport: String): Flow<Resource<RegisterResponse>> {
+       return userRepository.sendBugReport(bugReport)
     }
 
 }

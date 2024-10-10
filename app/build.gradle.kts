@@ -20,7 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String" , "BASE_URL" , "\"https://game-friends-one.vercel.app/\"")
+        buildConfigField("String" , "BASE_URL" , "\"https://game-friends-production.up.railway.app/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

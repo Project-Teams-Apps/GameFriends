@@ -3,8 +3,10 @@ package com.gamefriends.core.data.source.remote.network
 import com.gamefriends.core.data.source.remote.DTO
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ChatHistoryResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
+import com.gamefriends.core.data.source.remote.response.ListChatResponse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.ListResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
@@ -55,6 +57,17 @@ interface ApiService {
         @Query("limit") limit: Int = 5,
         @Query("userId") userId: String
     ): ListResponse
+
+    @GET("chat/chats")
+    suspend fun getListChatUser(
+        @Query("userID") userID:String
+    ): ListChatResponse
+
+    @GET("/chat/history")
+    suspend fun getHistoryChatUser(
+        @Query("fromUserId") fromUserId: String,
+        @Query("toUserId") toUserId: String
+    ): ChatHistoryResponse
 
     // List Request Friend To User
     @GET("/api/content/request/friend")
@@ -129,4 +142,13 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): BioResponse
 
+    @POST("/setting/feedback")
+    suspend fun sendFeedback(
+        @Body sendFeedbackBody: DTO.SendFeedbackBody
+    ): RegisterResponse
+
+    @POST("/setting/reportbug")
+    suspend fun sendBugReport(
+        @Body sendBugReportBody: DTO.SendBugReportBody
+    ): RegisterResponse
 }

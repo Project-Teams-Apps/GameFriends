@@ -9,7 +9,9 @@ import com.gamefriends.core.data.source.remote.RemoteSource
 import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ChatHistoryResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
+import com.gamefriends.core.data.source.remote.response.ListChatResponse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
@@ -383,6 +385,71 @@ class UserRepository @Inject constructor(
                 }
             }
 
+        }
+    }
+
+    override fun fetchListChatUser(): Flow<Resource<ListChatResponse>> = flow {
+        emit(Resource.Loading())
+
+        val userId = tokenPreferences.getToken().first().userId
+        remoteSource.fetchListChat(userId).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun fetchHistoryChatUser(toUserId: String): Flow<Resource<ChatHistoryResponse>> = flow {
+        emit(Resource.Loading())
+
+        val fromUserId = tokenPreferences.getToken().first().userId
+        remoteSource.fetchHistoryChat(fromUserId, toUserId).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+
+    override fun sendFeedback(feedbackReport: String): Flow<Resource<RegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        val email = tokenPreferences.getProfileUser().first().email
+        remoteSource.sendFeedback(email, feedbackReport).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
+        }
+    }
+
+    override fun sendBugReport(bugReport: String): Flow<Resource<RegisterResponse>> = flow {
+        emit(Resource.Loading())
+
+        val email = tokenPreferences.getProfileUser().first().email
+        remoteSource.sendBugReport(email, bugReport).collect() {apiResponse ->
+            when(apiResponse) {
+                ApiResponse.Empty -> emit(Resource.Error("No Data Found"))
+                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Success -> {
+                    val response = apiResponse.data
+                    emit(Resource.Success(response))
+                }
+            }
         }
     }
 
