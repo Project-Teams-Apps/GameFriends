@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.gamefriends.R
+
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.databinding.ActivitySendFeedbackBinding
 import dagger.hilt.android.AndroidEntryPoint

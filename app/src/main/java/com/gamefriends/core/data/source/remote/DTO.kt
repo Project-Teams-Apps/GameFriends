@@ -50,7 +50,6 @@ object DTO {
         var email: String,
         var bugReport: String
     )
-
     data class UserIdBody(
         var userID: String
     )

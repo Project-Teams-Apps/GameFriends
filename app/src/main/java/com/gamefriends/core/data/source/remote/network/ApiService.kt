@@ -68,7 +68,7 @@ interface ApiService {
         @Query("fromUserId") fromUserId: String,
         @Query("toUserId") toUserId: String
     ): ChatHistoryResponse
-
+  
     // List Request Friend To User
     @GET("/api/content/request/friend")
     suspend fun listRequestFriend(

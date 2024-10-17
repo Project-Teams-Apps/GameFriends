@@ -75,6 +75,12 @@
     </activity>
 
     <activity
+        android:id="@+id/settingActivity"
+        android:label="settingActivity"
+        android:name="com.gamefriends.ui.setting.SettingActivity"
+        tools:layout="@layout/activity_setting"/>
+
+    <activity
         android:id="@+id/authActivity"
         android:label="authActivity"
         android:name="com.gamefriends.ui.auth.AuthenticationActivity"

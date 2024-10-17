@@ -254,7 +254,6 @@ class UserRepository @Inject constructor(
 
     override fun addFriendRequest(userRequestId: String): Flow<Resource<AddFriendRequestResponse>> = flow {
         emit(Resource.Loading())
-
         val userAcceptId = tokenPreferences.getToken().first().userId
         remoteSource.addFriendRequest(userRequestId, userAcceptId).collect() {apiResponse ->
             when(apiResponse) {
@@ -272,7 +271,6 @@ class UserRepository @Inject constructor(
         userRequestId: String
     ): Flow<Resource<AddFriendRequestResponse>> = flow {
         emit(Resource.Loading())
-
         val userAcceptId = tokenPreferences.getToken().first().userId
         remoteSource.acceptFriendRequest(userRequestId, userAcceptId).collect() {apiResponese ->
             when(apiResponese) {
