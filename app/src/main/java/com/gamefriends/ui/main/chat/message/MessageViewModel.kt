@@ -9,4 +9,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MessageViewModel @Inject constructor(private val useCase: UserUseCase): ViewModel() {
     fun fetchHistoryMessage(toUserId: String) = useCase.fetchMessageChatUser(toUserId).asLiveData()
+
+    val getToken = useCase.getToken().asLiveData()
 }

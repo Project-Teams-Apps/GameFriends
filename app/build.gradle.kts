@@ -21,6 +21,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String" , "BASE_URL" , "\"https://game-friends-production.up.railway.app/\"")
+        buildConfigField("String", "WEBSCOKET_URL", "\"wss://game-friends-production.up.railway.app\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -116,4 +117,7 @@ dependencies {
     implementation("com.loopj.android:android-async-http:1.4.10")
 
     implementation("androidx.room:room-paging:2.6.1")
+
+    implementation ("io.socket:socket.io-client:2.0.0")
+    implementation ("org.json:json:20210307")
 }

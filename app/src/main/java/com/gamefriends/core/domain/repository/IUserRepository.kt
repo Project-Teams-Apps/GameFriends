@@ -1,5 +1,6 @@
 package com.gamefriends.core.domain.repository
 
+import android.content.Context
 import androidx.paging.PagingData
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 interface IUserRepository {
+
     fun tokenProvider(): Flow<Token>
 
     fun bioUserProvider(): Flow<BioUser>
