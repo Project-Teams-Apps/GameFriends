@@ -43,7 +43,36 @@
         android:id="@+id/listChatFragment"
         android:label="ListChatFragment"
         android:name="com.gamefriends.ui.main.chat.ListChatFragment"
-        tools:layout="@layout/fragment_list_chat"/>
+        tools:layout="@layout/fragment_list_chat">
+        <action
+            android:id="@+id/action_listChatFragment_to_ChatActivity"
+            app:destination="@id/ChatActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/settingActivity"
+        android:label="settingActivity"
+        android:name="com.gamefriends.ui.setting.SettingActivity"
+        tools:layout="@layout/activity_setting"/>
+
+    <activity
+        android:id="@+id/ChatActivity"
+        android:label="ChatActivity"
+        android:name="com.gamefriends.ui.main.chat.message.MessageActivity"
+        tools:layout="@layout/activity_message">
+
+        <argument
+            android:name="toUserId"
+            app:argType="string"/>
+
+        <argument
+            android:name="name"
+            app:argType="string"/>
+
+        <argument
+            android:name="profilePicture"
+            app:argType="string"/>
+    </activity>
 
     <activity
         android:id="@+id/settingActivity"

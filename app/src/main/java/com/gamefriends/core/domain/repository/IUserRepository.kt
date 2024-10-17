@@ -1,11 +1,14 @@
 package com.gamefriends.core.domain.repository
 
+import android.content.Context
 import androidx.paging.PagingData
 import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.data.source.local.enitity.FeedUserEntity
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ChatHistoryResponse
 import com.gamefriends.core.data.source.remote.response.DataItem
+import com.gamefriends.core.data.source.remote.response.ListChatResponse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
 import com.gamefriends.core.data.source.remote.response.RegisterResponse
@@ -17,6 +20,7 @@ import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 interface IUserRepository {
+
     fun tokenProvider(): Flow<Token>
 
     fun bioUserProvider(): Flow<BioUser>
@@ -70,4 +74,12 @@ interface IUserRepository {
     fun bioUser(bio: String): Flow<Resource<BioResponse>>
 
     fun locationUser(location: String): Flow<Resource<BioResponse>>
+
+    fun fetchListChatUser(): Flow<Resource<ListChatResponse>>
+
+    fun fetchHistoryChatUser(toUserId: String): Flow<Resource<ChatHistoryResponse>>
+
+    fun sendFeedback(feedbackReport: String): Flow<Resource<RegisterResponse>>
+
+    fun sendBugReport(bugReport: String): Flow<Resource<RegisterResponse>>
 }

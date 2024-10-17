@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SettingActivity : AppCompatActivity(), View.OnClickListener {
+
     private lateinit var binding: ActivitySettingBinding
     private val viewModel : SettingViewModel by viewModels()
 
@@ -102,4 +103,5 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         val dialog : AlertDialog = builder.create()
         dialog.show()
     }
+
 }

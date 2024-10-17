@@ -1,6 +1,7 @@
 package com.gamefriends.core.data.source.remote
 
 
+import android.content.Context
 import androidx.datastore.preferences.protobuf.Api
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
@@ -12,9 +13,11 @@ import com.gamefriends.core.data.source.remote.network.ApiResponse
 import com.gamefriends.core.data.source.remote.network.ApiService
 import com.gamefriends.core.data.source.remote.response.AddFriendRequestResponse
 import com.gamefriends.core.data.source.remote.response.BioResponse
+import com.gamefriends.core.data.source.remote.response.ChatHistoryResponse
 import com.gamefriends.core.data.source.remote.response.Data
 import com.gamefriends.core.data.source.remote.response.DataItem
 import com.gamefriends.core.data.source.remote.response.GetProfileResponse
+import com.gamefriends.core.data.source.remote.response.ListChatResponse
 import com.gamefriends.core.data.source.remote.response.ListNotificationResponse
 import com.gamefriends.core.data.source.remote.response.LoginResponse
 import com.gamefriends.core.data.source.remote.response.LogoutResponse
@@ -137,7 +140,6 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
         ).flow
     }
 
-
     // Get List Request Friend To User
     fun getListRequestFriend(userId: String): Flow<ApiResponse<ListNotificationResponse>> = flow {
         try {
@@ -152,7 +154,7 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             emit(ApiResponse.Error(e.toString()))
         }
     }.flowOn(Dispatchers.IO)
-    
+
     fun getProfile(userId: String): Flow<ApiResponse<GetProfileResponse>> = flow {
         try {
             val response = apiService.getProfile(userId)
@@ -195,7 +197,6 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             emit(ApiResponse.Error(e.toString()))
         }
     }
-
 
     fun acceptFriendRequest(userRequestId: String, userAcceptId: String): Flow<ApiResponse<AddFriendRequestResponse>> = flow {
         try {
@@ -319,6 +320,67 @@ class RemoteSource @Inject constructor(private val apiService: ApiService) {
             val response = apiService.uploadImageProfile(userId, multiPartbody)
 
             if (response.data?.profilePicureUrl?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
+
+
+    suspend fun fetchListChat(userId: String): Flow<ApiResponse<ListChatResponse>> = flow {
+        try {
+            val response = apiService.getListChatUser(userId)
+
+            if (response.data?.listUserChat?.getListMessage?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
+
+    suspend fun fetchHistoryChat(fromUserId: String, toUserId: String): Flow<ApiResponse<ChatHistoryResponse>> = flow {
+        try {
+            val response = apiService.getHistoryChatUser(fromUserId, toUserId)
+
+            if (response.data?.chatHistory?.getHistory?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
+
+    suspend fun sendFeedback(email: String, feedbackReport: String): Flow<ApiResponse<RegisterResponse>> = flow {
+        try {
+            val requestBody = DTO.SendFeedbackBody(email, feedbackReport)
+
+            val response = apiService.sendFeedback(requestBody)
+
+            if (response.data?.isNotEmpty() == true) {
+                emit(ApiResponse.Success(response))
+            } else {
+                emit(ApiResponse.Empty)
+            }
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.toString()))
+        }
+    }
+
+    suspend fun sendBugReport(email: String, bugReport: String): Flow<ApiResponse<RegisterResponse>> = flow {
+        try {
+            val requestBody = DTO.SendBugReportBody(email, bugReport)
+
+            val response = apiService.sendBugReport(requestBody)
+
+            if (response.data?.isNotEmpty() == true) {
                 emit(ApiResponse.Success(response))
             } else {
                 emit(ApiResponse.Empty)
