@@ -17,6 +17,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class ReportAbugActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReportAbugBinding
+
+    private val viewModel : BugReportViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
