@@ -99,7 +99,7 @@
             android:layout_gravity="center_horizontal">
 
             <EditText
-                android:id="@+id/oldPasswordLoginEdt"
+                android:id="@+id/oldPasswordEdt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -135,7 +135,7 @@
             android:layout_gravity="center_horizontal">
 
             <EditText
-                android:id="@+id/newPasswordLoginEdt"
+                android:id="@+id/newPasswordEdt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -172,7 +172,7 @@
             >
 
             <EditText
-                android:id="@+id/verifyPasswordLoginEdt"
+                android:id="@+id/verifyPasswordEdt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

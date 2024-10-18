@@ -26,6 +26,7 @@ import com.gamefriends.core.data.source.Resource
 import com.gamefriends.core.service.MyWorker
 import com.gamefriends.core.ui.LoadingStateAdapter
 import com.gamefriends.core.ui.UserAdapter
+import com.gamefriends.core.utils.CreateSnapHelper
 import com.gamefriends.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -69,7 +70,7 @@ class HomeFragment : Fragment() {
         binding.listFeedRv.layoutManager = layoutManager
         binding.listFeedRv.addItemDecoration(itemDecoration)
 
-        val snapHelper = LinearSnapHelper()
+        val snapHelper = CreateSnapHelper()
 
         snapHelper.attachToRecyclerView(binding.listFeedRv)
 

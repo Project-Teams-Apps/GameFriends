@@ -40,6 +40,25 @@ class AccountActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupChangePassword(email: String, otp: String) {
+        val oldPassword = binding.oldPasswordEdt.text.toString()
+        val newPassword = binding.newPasswordEdt.text.toString()
+        val verifyNewPassword = binding.verifyPasswordEdt.text.toString()
+
+        val isPasswordValid = oldPassword.length >= 8
+        val oldPasswordsMatch = newPassword == verifyNewPassword
+
+        binding.changePasswordBtn.isEnabled = isPasswordValid && oldPasswordsMatch
+
+        if (!isPasswordValid) {
+            binding.oldPasswordEdt.error = "Password Must be Fill 8 Character"
+        } else {
+            binding.verifyPasswordEdt.error = null
+        }
+
+        viewModel.changePassword(email, otp, verifyNewPassword)
+    }
+
     private fun setupAccountUi() {
         viewModel.getProfileUser().observe(this) {apiResponse ->
             when(apiResponse) {
@@ -53,6 +72,11 @@ class AccountActivity : AppCompatActivity() {
                     binding.usernameTv.text = apiResponse.data?.name
                     binding.countryTv.text = apiResponse.data?.location
                     binding.genderTv.text = apiResponse.data?.gender
+
+                    binding.changePasswordBtn.setOnClickListener {
+                        val otp = ""
+                        setupChangePassword(apiResponse.data?.email.toString(),otp)
+                    }
                 }
             }
         }

@@ -10,5 +10,7 @@ import javax.inject.Inject
 class AccountViewModel @Inject constructor(private val userUseCase: UserUseCase): ViewModel(){
     fun getProfileUser() = userUseCase.profileUseCase().asLiveData()
 
+    fun changePassword(email: String, otp: String, password:String) = userUseCase.changePasswordUserUseCase(email, otp, password)
+
     val getProfileData = userUseCase.getProfileDataStore().asLiveData()
 }
