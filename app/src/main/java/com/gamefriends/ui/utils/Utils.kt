@@ -1,5 +1,6 @@
 package com.gamefriends.ui.utils
 
+import android.app.AlertDialog
 import android.view.View
 import android.content.ContentValues
 import android.content.Context
@@ -16,6 +17,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import androidx.core.graphics.get
 import com.gamefriends.BuildConfig
+import com.gamefriends.R
 import java.io.ByteArrayOutputStream
 
 import java.io.File

@@ -1,5 +1,6 @@
 package com.gamefriends.ui.auth.login
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -64,6 +65,7 @@ class LoginFragment : Fragment() {
                 when (data) {
                     is Resource.Error -> {
                         binding.progreesLoading.visibility = View.INVISIBLE
+                        Toast.makeText(requireContext(), "Username or Password is Wrong", Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Loading -> {
                         binding.progreesLoading.visibility = View.VISIBLE
@@ -80,6 +82,5 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
 
 }
